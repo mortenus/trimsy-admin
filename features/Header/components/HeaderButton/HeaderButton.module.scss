@@ -1,0 +1,56 @@
+.popup {
+  max-height: 0;
+  position: absolute;
+  //   top: 48px;
+  top: calc(108px - var(--navbar-height));
+  left: -30px;
+  background: #fff;
+  box-shadow: 0 6px 18px 0 rgb(22 45 61 / 12%);
+  overflow: hidden;
+  //   padding: 50px 60px;
+  visibility: hidden;
+  opacity: 0;
+  //   transform: translateY(-100px);
+  transition: opacity 0s, visibility 0s;
+  z-index: 10;
+
+  &.visible {
+    .text {
+      transform: translateY(0);
+      visibility: visible;
+      opacity: 1;
+    }
+
+    max-height: 300px;
+    visibility: visible;
+    opacity: 1;
+    transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1),
+      max-height 0.6s cubic-bezier(0.33, 1, 0.68, 1), visibility 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+}
+
+.text {
+  transform: translateY(-100px);
+
+  padding: 50px 60px;
+  visibility: hidden;
+  opacity: 0;
+
+  width: 360px;
+
+  .item {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 40px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      font-size: 14px;
+      margin-top: 8px;
+    }
+  }
+}

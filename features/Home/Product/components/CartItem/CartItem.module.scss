@@ -1,0 +1,58 @@
+.item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+
+  border: 1px solid #f3f3f3;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 10px;
+
+  .image {
+    height: 60px;
+    width: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 10px;
+
+    @media (min-width: 1450px) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .title {
+    margin-right: 10px;
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    p {
+      margin-bottom: 5px;
+    }
+  }
+
+  p {
+    font-size: 12px;
+    margin: 0;
+
+    @media (max-width: 1330px) {
+      font-size: 10px;
+    }
+  }
+  b {
+    font-size: 0.6em;
+  }
+
+  .removeBtn {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.15s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

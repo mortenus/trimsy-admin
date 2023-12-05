@@ -1,0 +1,67 @@
+.text {
+  font-size: 28px;
+
+  @media (max-width: 1600px) {
+    font-size: 26px;
+  }
+
+  @media (max-width: 1440px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 734px) {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  position: relative;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &.active {
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      right: -5px;
+      top: 0;
+      height: 100%;
+      width: 2px;
+      background: #fff;
+      animation: blinker 0.65s step-start infinite;
+
+      @media (max-width: 724px) {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+  }
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.backup {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+
+  @media (max-width: 724px) {
+    font-size: 20px;
+    display: block;
+
+    text-align: right;
+
+    visibility: visible;
+    opacity: 1;
+
+    margin-bottom: 30px;
+  }
+}

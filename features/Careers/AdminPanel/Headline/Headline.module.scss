@@ -1,0 +1,27 @@
+.info {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 35px;
+
+  width: 100%;
+  background: #f8f9fb;
+
+  padding: 25px 100px;
+
+  .text {
+    .title {
+      font-size: 32px;
+
+      color: #333;
+
+      margin-bottom: 15px;
+    }
+
+    .description {
+      font-size: 16px;
+
+      color: #858585;
+    }
+  }
+}

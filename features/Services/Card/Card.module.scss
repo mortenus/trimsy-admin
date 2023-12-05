@@ -1,0 +1,72 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 100px 0;
+
+  overflow: hidden;
+
+  .img {
+    position: relative;
+    width: 1600px;
+    height: auto;
+    object-fit: cover;
+
+    @media (max-width: 1280px) {
+      width: 1200px;
+    }
+
+    @media (max-width: 734px) {
+      width: 1000px;
+    }
+
+    @media (max-width: 650px) {
+      width: 800px;
+    }
+
+    @media (max-width: 500px) {
+      width: 600px;
+    }
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-bottom: 40px;
+
+    .new {
+      font-size: 19px;
+      color: rgba(0, 0, 0, 0.6);
+      font-weight: 500;
+
+      margin-bottom: 10px;
+
+      @media only screen and (max-width: 734px) {
+        font-size: 16px;
+
+        margin-bottom: 5px;
+      }
+    }
+
+    .service {
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+
+      margin: 10px;
+
+      &__headline {
+        font-size: 64px;
+        font-weight: 600;
+        letter-spacing: -0.05em;
+      }
+    }
+  }
+
+  .cta {
+    margin-bottom: 25px;
+  }
+}

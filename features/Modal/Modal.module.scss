@@ -1,0 +1,50 @@
+.overflow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.1s ease-out, visibility 0.1s ease-out;
+  overflow: auto;
+  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(35px);
+}
+
+.overlayVisible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.content {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1100;
+  border-radius: 25px;
+  background: #fff;
+  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+  //   padding: 50px 50px 30px 50px;
+  min-height: 100%;
+
+  padding-bottom: 30px;
+  position: relative;
+
+  @media (max-width: 734px) {
+    margin: 0 auto;
+    border-radius: 0;
+  }
+
+  .close {
+    cursor: pointer;
+    position: sticky;
+    top: 34px;
+    margin-left: 35px;
+    margin-top: 24px;
+    width: 15px;
+    z-index: 1;
+  }
+}

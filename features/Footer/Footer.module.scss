@@ -1,0 +1,133 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 50px 0;
+
+  border-top: 1px solid #000;
+
+  .wrapper {
+    background: #fff;
+    max-width: 1280px;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: 1440px) {
+      max-width: 1024px;
+    }
+
+    @media (max-width: 1250px) {
+      max-width: 900px;
+    }
+
+    @media (max-width: 1068px) {
+      max-width: 692px;
+    }
+
+    @media (max-width: 710px) {
+      display: block;
+    }
+
+    @media (max-width: 734px) {
+      max-width: 100%;
+
+      padding: 0 20px;
+    }
+
+    .leftSide {
+      display: flex;
+      flex-direction: column;
+
+      .logo {
+        width: 200px;
+
+        @media (max-width: 450px) {
+          height: 80px;
+          width: 160px;
+        }
+      }
+
+      .nav {
+        .item {
+          font-weight: 500;
+          margin-bottom: 15px;
+
+          &:first-child {
+            margin-top: 30px;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    .rightSide {
+      @media (max-width: 710px) {
+        display: flex;
+        justify-content: center;
+        margin-top: 25px;
+      }
+
+      @media (max-width: 500px) {
+        display: none;
+      }
+    }
+  }
+
+  .notice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 100px;
+
+    .links {
+      display: flex;
+      font-size: 20px;
+
+      margin-bottom: 10px;
+
+      @media (max-width: 450px) {
+        font-size: 14px;
+      }
+
+      li {
+        padding-right: 15px;
+        padding-left: 15px;
+        border-right: 1px solid #000;
+        transition: all 1s ease-out;
+
+        @media (max-width: 450px) {
+          padding-right: 10px;
+          padding-left: 10px;
+        }
+
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          border-right: 0;
+          padding-right: 0;
+        }
+
+        a:hover {
+          border-bottom: 1px solid #000;
+        }
+      }
+    }
+
+    .copyright {
+      font-size: 20px;
+
+      @media (max-width: 450px) {
+        font-size: 12px;
+      }
+    }
+  }
+}

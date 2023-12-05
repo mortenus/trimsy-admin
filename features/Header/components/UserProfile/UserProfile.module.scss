@@ -1,0 +1,120 @@
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 100%;
+  width: 350px;
+
+  margin-right: 50px;
+
+  .menu {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    position: relative;
+
+    height: 100%;
+    padding: 0 15px;
+
+    .image {
+      margin-right: 5px;
+
+      display: flex;
+      justify-content: center;
+
+      padding: 20px 0;
+
+      position: relative;
+      min-width: 50px;
+      object-fit: cover;
+      overflow: hidden;
+      position: relative;
+
+      img {
+        border-radius: 50%;
+        object-fit: contain;
+      }
+    }
+
+    .overflow {
+      position: absolute;
+      top: calc(var(--navbar-height) + 2px);
+      left: 0px;
+
+      z-index: 9999;
+      backdrop-filter: blur(35px);
+
+      cursor: default;
+
+      width: 100%;
+    }
+
+    .overlayVisible {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .modal {
+      z-index: 1100;
+      background: #fff;
+      box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+      //   padding: 50px 50px 30px 50px;
+      position: relative;
+      //   padding: 10px 25px;
+
+      user-select: none;
+
+      @media (max-width: 734px) {
+        margin: 0 auto;
+        border-radius: 0;
+      }
+
+      //   .close {
+      //     cursor: pointer;
+      //     position: sticky;
+      //     top: 34px;
+      //     margin-left: 35px;
+      //     margin-top: 24px;
+      //     width: 15px;
+      //     z-index: 1;
+      //   }
+
+      .modal-button {
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+
+        padding: 10px 0px;
+        cursor: pointer;
+
+        &--title {
+          width: 100%;
+          font-size: 14px;
+        }
+
+        &:hover {
+          background: #dbdbdb;
+        }
+      }
+    }
+  }
+
+  .info {
+    width: 100%;
+
+    .name {
+      font-size: 16px;
+      font-weight: bold;
+
+      color: rgb(29, 29, 31);
+    }
+
+    .position {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgb(110, 110, 115);
+    }
+  }
+}

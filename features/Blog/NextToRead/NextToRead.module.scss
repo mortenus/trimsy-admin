@@ -1,0 +1,32 @@
+.further {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 200px 0 100px;
+
+  h3 {
+    font-size: 36px;
+
+    margin-bottom: 40px;
+
+    font-weight: 500;
+
+    text-transform: uppercase;
+
+    @media (max-width: 734px) {
+      font-size: 28px;
+    }
+
+    @media (max-width: 450px) {
+      font-size: 24px;
+    }
+  }
+
+  .items {
+    display: flex;
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+  }
+}

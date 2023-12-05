@@ -1,0 +1,20 @@
+.item {
+  padding-top: 20px;
+  border-top: 1px solid #fff;
+  width: 28%;
+
+  transition: transform 400ms ease-in-out, opacity 400ms ease-out;
+
+  @media (max-width: 1068px) {
+    width: 32%;
+    font-size: 16px;
+  }
+
+  @media (max-width: 734px) {
+    width: 100%;
+    max-width: 280px;
+    font-size: 16px;
+    margin-bottom: 60px;
+    padding-top: 8px;
+  }
+}

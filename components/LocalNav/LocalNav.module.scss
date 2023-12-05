@@ -1,0 +1,99 @@
+.intro-alternative {
+  position: -webkit-sticky;
+  position: sticky;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  //   min-width: 1024px;
+  z-index: 99;
+  background-color: rgba(255, 255, 255, 1);
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+
+    .headline {
+      font-size: 21px;
+      line-height: 1.14286;
+      font-weight: 600;
+      letter-spacing: 0.011em;
+      cursor: default;
+      display: block;
+      float: left;
+      margin: 14px 0 -14px;
+      padding: 0;
+      height: 52px;
+      white-space: nowrap;
+    }
+
+    .menu-items {
+      display: flex;
+
+      .items {
+        display: flex;
+        margin-left: 52px;
+
+        cursor: pointer;
+
+        .search {
+          display: inline-flex;
+          align-items: center;
+          white-space: nowrap;
+
+          &.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 300ms ease-out 400ms;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 0;
+          }
+
+          .icon {
+            width: 14px;
+            margin-right: 10px;
+          }
+
+          &-active {
+            display: flex;
+            align-items: center;
+
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 300ms ease-out 400ms;
+            height: 0;
+            width: 0;
+            font-size: 0;
+
+            &.visible {
+              visibility: visible;
+              opacity: 1;
+              height: 100%;
+              width: 100%;
+              font-size: inherit;
+              transition: opacity 500ms ease-in 200ms;
+            }
+
+            input {
+              border: none;
+              border-bottom: 1px solid #86868b;
+              border-radius: unset;
+              outline: none;
+              box-sizing: border-box;
+              background: transparent;
+              line-height: 1em;
+              height: 2em;
+              width: 100%;
+              padding-right: 1.47em;
+              color: #1d1d1f;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+
+  background: #000;
+  border-radius: 15px;
+
+  padding: 20px 35px;
+
+  .item {
+    padding-right: 25px;
+    padding-left: 25px;
+
+    border-right: 2px solid #fff;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+
+      border-right: 0;
+    }
+
+    svg {
+      width: 150px;
+      height: 100%;
+
+      @media (max-width: 1440px) {
+        width: 100px;
+      }
+
+      @media (max-width: 950px) {
+        width: 75px;
+      }
+
+      rect {
+        width: 100%;
+      }
+    }
+  }
+}

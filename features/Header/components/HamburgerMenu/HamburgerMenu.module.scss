@@ -1,0 +1,77 @@
+.popup {
+  max-height: 0;
+  position: absolute;
+  //   top: 76px;
+  //   top: calc(var(--vh - 66px));
+  top: calc(var(--navbar-height) + 2px);
+  right: 0;
+  background: #fff;
+  box-shadow: 0 6px 18px 0 rgb(22 45 61 / 12%);
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  //   transform: translateY(-100px);
+  transform: translateY(0px);
+  transition: opacity 0s, visibility 0s;
+
+  white-space: nowrap;
+
+  width: 400px;
+
+  display: flex;
+  flex-direction: column;
+  padding: 50px 30px;
+  text-align: center;
+
+  padding-bottom: 100px;
+
+  &.visible {
+    height: 100vh;
+    max-height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+    transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1),
+      max-height 0.6s cubic-bezier(0.33, 1, 0.68, 1), visibility 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+
+    @media (max-width: 734px) {
+      width: 100vw;
+      left: 0;
+    }
+
+    .text {
+      transform: translateY(0);
+      visibility: visible;
+      opacity: 1;
+      flex: 1;
+    }
+  }
+}
+
+.text {
+  transform: translateY(-100px);
+  text-align: left;
+
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  margin-bottom: 100px;
+  //   overflow-y: scroll;
+
+  visibility: hidden;
+  opacity: 0;
+
+  .item {
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    h4 {
+      font-size: 16px;
+      font-weight: 400;
+      //   margin-top: 8px;
+      margin-bottom: 30px;
+    }
+  }
+}

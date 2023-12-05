@@ -1,0 +1,161 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 185px;
+
+  background: #fff;
+
+  position: relative;
+  border: 1px solid #f3f3f3;
+  border-radius: 40px;
+
+  padding: 20px 25px;
+  margin-right: 20px;
+  margin-bottom: 15px;
+
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+  user-select: none;
+
+  h5 {
+    font-weight: 400;
+    font-size: 0.8em;
+
+    margin: 10px 0;
+
+    @media (max-width: 500px) {
+      font-size: 0.7em;
+
+      margin: 5px 0;
+    }
+  }
+
+  span {
+    font-size: 0.75em;
+    text-transform: uppercase;
+    opacity: 0.5;
+
+    @media (max-width: 500px) {
+      font-size: 0.6em;
+    }
+  }
+
+  b {
+    margin-top: 5px;
+    font-size: 0.75em;
+
+    @media (max-width: 500px) {
+      font-size: 0.6em;
+    }
+  }
+
+  @media only screen and (min-width: 1600px) {
+    width: 200px;
+  }
+
+  @media (max-width: 1600px) {
+    width: 180px;
+  }
+
+  @media (max-width: 1450px) {
+    width: 160px;
+  }
+
+  @media (max-width: 650px) {
+    width: 150px;
+  }
+
+  @media (max-width: 500px) {
+    width: 135px;
+  }
+
+  //   @media (max-width: 500px) {
+  //     width: 15vw;
+  //     height: 13vw;
+  //   }
+
+  @media (max-width: 650px) {
+    margin-right: 0;
+  }
+
+  &.hover {
+    box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.07);
+    transform: translateY(-5px);
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: start;
+  }
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+
+    .price {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .favorite {
+    position: absolute;
+    left: 20px;
+    z-index: 1;
+
+    width: 32px;
+    height: 32px;
+
+    @media (max-width: 1600px) {
+      width: 38px;
+      height: 38px;
+    }
+
+    @media (max-width: 1450px) {
+      width: 24px;
+      height: 24px;
+    }
+
+    @media only screen and (max-width: 960px) {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .like {
+    position: relative;
+    width: 32px;
+    height: 32px;
+
+    @media (max-width: 1600px) {
+      width: 38px;
+      height: 38px;
+    }
+
+    @media (max-width: 1450px) {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .image {
+    position: relative;
+    width: 120px;
+    height: 104px;
+
+    @media (max-width: 1450px) {
+      width: 100px;
+      height: 86.4px;
+    }
+
+    @media (max-width: 500px) {
+      width: 60px;
+      height: 54px;
+    }
+  }
+}

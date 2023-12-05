@@ -1,0 +1,147 @@
+.overflow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.1s ease-out, visibility 0.1s ease-out;
+  overflow: hidden;
+
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.75);
+  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(35px);
+}
+
+.overlayVisible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.form {
+  display: flex;
+  position: absolute;
+
+  border-radius: 25px;
+  background: #fff;
+
+  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+
+  padding: 150px 50px 30px 50px;
+
+  transition: transform 0.3s ease-in-out;
+
+  @media (max-width: 950px) {
+    // padding: 15px 25px;
+  }
+
+  @media (max-width: 734px) {
+    padding: 150px 30px 30px 30px;
+  }
+
+  .leftSide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 500px;
+
+    .formSvg {
+      position: absolute;
+      top: 0;
+    }
+
+    @media (max-width: 734px) {
+      width: 400px;
+    }
+
+    @media (max-width: 600px) {
+      width: 300px;
+    }
+
+    @media (max-width: 500px) {
+      width: 275px;
+    }
+  }
+
+  .rightSide {
+    display: flex;
+
+    width: 300px;
+
+    @media (max-width: 950px) {
+      display: none;
+    }
+
+    .description {
+      display: flex;
+      flex-direction: column;
+
+      margin-left: 30px;
+
+      @media (max-width: 750px) {
+        margin-left: 10px;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+
+        margin-bottom: 10px;
+
+        position: relative;
+
+        .icon {
+          margin-right: 10px;
+
+          position: absolute;
+          left: 0;
+          top: 0;
+
+          display: flex;
+          align-items: center;
+          height: 100%;
+
+          svg {
+            width: 50px;
+            height: 34px;
+          }
+        }
+
+        .text {
+          margin-left: 60px;
+        }
+      }
+    }
+
+    .additional {
+      margin-top: 20px;
+
+      h3 {
+        font-size: 24px;
+
+        font-weight: 400;
+
+        margin-bottom: 15px;
+      }
+    }
+  }
+  .close {
+    position: absolute;
+    top: 30px;
+    right: 35px;
+
+    cursor: pointer;
+
+    @media (max-width: 600px) {
+      right: 30px;
+      width: 25px;
+    }
+  }
+}

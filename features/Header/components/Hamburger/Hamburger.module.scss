@@ -1,0 +1,39 @@
+.hamburger {
+  //   display: none;
+  //   visibility: hidden;
+
+  //   position: relative;
+
+  //   max-width: 45px;
+  //   width: 100%;
+  //   justify-content: center;
+
+  //   @media (max-width: 1250px) {
+  //     display: inline-block;
+  //     visibility: visible;
+
+  //     height: 100%;
+  //     display: flex;
+  //     align-items: center;
+
+  //     cursor: pointer;
+  //   }
+
+  // New:
+
+  display: inline-block;
+  visibility: visible;
+
+  //   height: 100%;
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+
+  position: static;
+
+  .svg {
+    width: 35px;
+    height: 35px;
+  }
+}

@@ -1,0 +1,98 @@
+.section {
+  margin-top: 20px;
+  position: relative;
+
+  h3 {
+    font-size: 28px;
+    padding: 40px 0 15px 0;
+  }
+
+  h4 {
+    font-size: 24px;
+    padding: 35px 0 5px 0;
+  }
+
+  h5 {
+    font-size: 20px;
+    padding: 20px 0 0 0;
+  }
+
+  h6 {
+    font-size: 16px;
+    padding: 15px 0 0 0;
+  }
+
+  a {
+    font-weight: bold;
+    color: #1a0dab;
+
+    &:hover {
+      color: #000;
+      border-bottom: 1px solid #000;
+    }
+  }
+
+  ul {
+    padding-left: 20px;
+
+    margin: 10px 0;
+
+    li {
+      list-style: inside;
+      margin-bottom: 6px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  p {
+    padding: 10px 0;
+    line-height: 1.3;
+    font-size: 19px;
+    font-weight: 400;
+    letter-spacing: 0.012em;
+
+    span {
+      font-weight: 600;
+    }
+  }
+
+  .underline_text {
+    padding: 0;
+    color: rgb(51, 51, 51);
+    font-size: 14px;
+    line-height: 1.42857;
+
+    display: flex;
+    justify-content: center;
+  }
+
+  .code {
+    background: #000;
+    margin: 20px 0;
+    padding: 20px 25px;
+    white-space: nowrap;
+    overflow-y: auto;
+
+    code {
+      color: #fff;
+    }
+  }
+
+  .note {
+    margin: 20px 0;
+    padding: 20px;
+    width: fit-content;
+
+    background: #fff;
+  }
+
+  .img {
+    display: flex;
+    justify-content: center;
+
+    padding: 20px 0;
+  }
+}

@@ -1,0 +1,164 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  //   min-height: calc(100vh - 500px);
+  min-height: calc(100vh - var(--navbar-height));
+  position: relative;
+
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #4154c8);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 15s ease infinite;
+  -moz-animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite;
+
+  //   padding: 175px 0;
+
+  @media (max-width: 734px) {
+    min-height: auto;
+    padding: 290px 0;
+  }
+
+  h1 {
+    // font-size: clamp(3.5rem, 6vw, 8.5rem);
+    font-size: 128px;
+    font-weight: bold;
+
+    // margin: 50px 0 30px 0;
+
+    @media (max-width: 734px) {
+      font-size: 90px;
+    }
+
+    @media (max-width: 400px) {
+      font-size: 48px;
+    }
+  }
+
+  h3 {
+    // font-size: clamp(1.825rem, 3vw, 5rem);
+    // font-size: 64px;
+    // font-weight: 600;
+
+    // @media (max-width: 734px) {
+    //   font-size: 36px;
+    // }
+
+    // @media (max-width: 400px) {
+    //   font-size: 24px;
+    // }
+    font-size: 98px;
+    font-weight: bold;
+
+    // margin: 50px 0 30px 0;
+
+    @media (max-width: 1280px) {
+      font-size: 64px;
+    }
+
+    @media (max-width: 734px) {
+      font-size: 48px;
+    }
+
+    @media (max-width: 500px) {
+      font-size: 32px;
+    }
+  }
+
+  p {
+    // font-size: clamp(1.075rem, 1.5vw, 4rem);
+    // font-size: 24px;
+    // font-weight: 500;
+
+    // margin: 20px 0;
+
+    // @media (max-width: 734px) {
+    //   font-size: 18px;
+    // }
+
+    // @media (max-width: 500px) {
+    //   margin: 15px 0.9rem;
+    //   font-size: 12px;
+    // }
+
+    // @media (max-width: 400px) {
+    //   font-size: 10px;
+    // }
+    font-size: 36px;
+    font-weight: 500;
+
+    margin: 20px 0 40px 0;
+
+    @media (max-width: 1280px) {
+      font-size: 28px;
+    }
+
+    @media (max-width: 734px) {
+      font-size: 18px;
+    }
+
+    @media (max-width: 500px) {
+      margin: 15px 0.9rem 30px 0.9rem;
+      font-size: 12px;
+    }
+
+    @media (max-width: 400px) {
+      font-size: 10px;
+    }
+  }
+
+  &:hover {
+    .pause {
+      opacity: 1;
+    }
+  }
+
+  .pause {
+    padding: 11px 12px;
+    border: 2px solid #000;
+    background: transparent;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    right: 50px;
+    bottom: 40px;
+
+    cursor: pointer;
+
+    opacity: 0;
+    transition: opacity 0.15s ease-in;
+
+    @media (max-width: 734px) {
+      //   display: none;
+      //   visibility: none;
+      //   opacity: 0;
+
+      opacity: 1;
+
+      right: 20px;
+      bottom: 20px;
+    }
+
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

@@ -1,0 +1,281 @@
+$blue: rgb(22, 106, 234);
+
+.wrapper {
+  display: inline-block;
+
+  font-weight: 500;
+  color: #fff;
+
+  cursor: pointer;
+  user-select: none;
+
+  background: $blue;
+
+  &:hover {
+    background: #0077ed;
+  }
+
+  border-radius: 40px;
+
+  transition: background 0.1s ease-in, padding 0.3s ease;
+
+  //   font-size: clamp(1rem, 1.2vw, 1.5rem);
+
+  //   font-size: 20px;
+
+  padding: clamp(0.4rem, 1vw, 1rem) clamp(1.6rem, 1.4vw, 3rem);
+
+  //   &:hover {
+  //     background: lighten($blue, 10%);
+  //   }
+
+  @media only screen and (min-width: 1600px) {
+    // padding: 18px 46px;
+    // font-size: 24px;
+  }
+
+  @media (min-width: 1450px) and (max-width: 1600px) {
+    // padding: 16.8px 42px;
+    // font-size: 20px;
+  }
+
+  @media (min-width: 960px) and (max-width: 1450px) {
+    // padding: 12px 30px;
+
+    // font-size: 18.5px;
+  }
+
+  @media only screen and (max-width: 960px) {
+    // padding: 10.1px 25.2px;
+
+    // font-size: 16px;
+  }
+
+  &_nav {
+    color: #fff;
+
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: darken($blue, 15%);
+    }
+  }
+
+  // colors
+
+  &.black {
+    background: #000;
+    color: #fff;
+    border: 2px solid transparent;
+
+    &:hover {
+      //   background: lighten($blue, 10%);
+      //   color: #000;
+      //   background: #fff;
+      background: lighten(#000, 10%);
+      border: 2px solid rgba(0, 0, 0, 0.35);
+    }
+
+    &__inverse {
+      background: #000;
+      color: #fff;
+      border: 2px solid transparent;
+
+      &:hover {
+        background: #fff;
+        color: #000;
+        background: #fff;
+        border: 2px solid rgba(0, 0, 0, 0.35);
+      }
+    }
+  }
+
+  &.transparent {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border: 2px solid transparent;
+
+    &:hover {
+      //   background: lighten($blue, 10%);
+      //   color: #000;
+      //   background: #fff;
+      background: rgba(0, 0, 0, 0.55);
+    }
+  }
+
+  &.white {
+    background: #fff;
+    color: #000;
+
+    border: 2px solid #fff;
+
+    &:hover {
+      color: #fff;
+      background: #000;
+
+      border: 2px solid #fff;
+    }
+  }
+
+  // sizes
+
+  &.supersmall {
+    font-size: 14px;
+
+    text-align: center;
+
+    font-weight: 400;
+    width: auto;
+    padding: 4px 12px;
+    line-height: 1.3333333333;
+  }
+
+  &.small {
+    font-size: 18px;
+
+    text-align: center;
+
+    font-weight: 400;
+
+    width: auto;
+    padding: 8px 20px;
+  }
+
+  &.medium {
+    width: 200px;
+
+    font-size: 20px;
+
+    text-align: center;
+  }
+
+  &.large {
+    width: 300px;
+    font-size: 24px;
+
+    text-align: center;
+  }
+
+  // Types
+
+  &_default {
+    color: #0066cc;
+    font-size: 20px;
+
+    padding: 0;
+    background: none;
+
+    &:hover {
+      background: transparent;
+    }
+
+    &--bold {
+      color: #2997ff;
+
+      font-size: 20px;
+
+      padding: 0;
+      background: none;
+
+      &:hover {
+        background: transparent;
+      }
+    }
+  }
+
+  &_submit {
+    // border: 1px solid rgba(0, 0, 0, 1);
+
+    transition: all 0.3s ease;
+  }
+
+  &_search {
+    border: 2px solid #000;
+    padding: 15px 25px;
+
+    @media (max-width: 450px) {
+      padding: 15px 15px;
+      font-size: 14px;
+    }
+
+    transition: all 0.3s ease;
+  }
+
+  // status
+  &.success {
+    background: rgb(6, 146, 13) !important;
+    color: #fff !important;
+    border: 2px solid transparent;
+
+    &:hover {
+      border: 2px solid rgb(6, 146, 13) !important;
+    }
+  }
+
+  &.fail {
+    background: rgb(146, 6, 6) !important;
+    color: #fff !important;
+    border: 2px solid transparent;
+    &:hover {
+      border: 2px solid rgb(146, 6, 6) !important;
+    }
+  }
+
+  &--disabled {
+    &_black {
+      border: 2px solid transparent !important;
+
+      color: #000 !important;
+
+      cursor: not-allowed;
+
+      animation-name: pulse_black;
+      animation-duration: 1.15s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-timing-function: ease-in-out;
+
+      &:hover {
+        //   border: 2px solid transparent !important;
+      }
+    }
+
+    &_white {
+      border: 2px solid transparent !important;
+
+      color: #fff !important;
+
+      cursor: not-allowed;
+
+      animation-name: pulse_white;
+      animation-duration: 1.15s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-timing-function: ease-in-out;
+
+      &:hover {
+        //   border: 2px solid transparent !important;
+      }
+    }
+  }
+}
+
+@keyframes pulse_white {
+  from {
+    // background: rgba(0, 0, 0, 0.35);
+    background: rgba(255, 255, 255, 0.5);
+  }
+  to {
+    // background: rgba(0, 0, 0, 0.6);
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+@keyframes pulse_black {
+  from {
+    background: rgba(0, 0, 0, 0.25);
+  }
+  to {
+    background: rgba(0, 0, 0, 0.45);
+  }
+}
