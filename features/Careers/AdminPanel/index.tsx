@@ -4,6 +4,8 @@ import React from 'react';
 import styles from './AdminPanel.module.scss';
 import Nav from '../Nav';
 import Orders from '../Orders';
+import { useRouter } from 'next/router';
+import Dashboard from '../Dashboard';
 
 type TAdminPanel = {
   //   onScrollEvent: any;
@@ -12,6 +14,7 @@ type TAdminPanel = {
 };
 
 const AdminPanel = ({}: TAdminPanel) => {
+  const router = useRouter();
   //   const ref = React.useRef(null);
 
   //   const { inView } = useInView({ ref, onScrollEvent, offset, mobileDisabled: true });
@@ -19,7 +22,8 @@ const AdminPanel = ({}: TAdminPanel) => {
   return (
     <section className={styles.admin}>
       <Nav />
-      <Orders />
+      {router.pathname === '/' && <Dashboard />}
+      {router.pathname === '/orders' && <Orders />}
     </section>
   );
 };

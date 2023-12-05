@@ -57,10 +57,6 @@ const LoginForm = (props) => {
               Log in with Google
             </Button> */}
           </Form.Item>
-
-          <Link className="auth__register-link" href="/auth/signup">
-            Register
-          </Link>
         </Form>
       </Block>
     </div>
