@@ -3,18 +3,10 @@ import React from 'react';
 
 Landing.description = `Exp☻lore innovative solutions with Trimsy in Web Development, IT opportunities with support and more.`;
 
-export default function Landing({}) {
+export default function Landing() {
   return (
     <>
-      <main>
-        {
-          <AdminPanel />
-
-          /* <Web />
-
-        <Careers /> */
-        }
-      </main>
+      <main>{<AdminPanel />}</main>
     </>
   );
 }

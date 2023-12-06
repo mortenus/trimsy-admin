@@ -11,11 +11,7 @@ export default function Logout() {
   }, []);
 
   React.useEffect(() => {
-    const timeout = setTimeout(() => {
-      router.push('/');
-    }, 500);
-
-    return () => clearTimeout(timeout);
+    router.push('/');
   }, []);
 
   return <LoadingOverlay fullScreen />;

@@ -128,11 +128,8 @@ interface OrdersHook {
   clearSelection: () => void;
   isRefreshingItems: boolean;
   refreshItems: () => void;
-  onClickDelete: (id: number) => void;
   type: string;
   searchQuery: string;
-  dataFetchError?: string | null;
-  isFetching: boolean | null;
 }
 
 const API_ENDPOINT = 'http://localhost:3001/admin/careers';
@@ -149,7 +146,7 @@ export default function useOrders(): OrdersHook {
   const [type, setType] = useState('all');
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { fetchData, cleanFetchData, dataFetchError } = useDataFetching({
+  const { fetchData, cleanFetchData } = useDataFetching({
     API_ENDPOINT,
     page,
     totalPages,
@@ -172,11 +169,6 @@ export default function useOrders(): OrdersHook {
       setSearchQuery,
       setType,
       searchQuery,
-      type,
-      API_ENDPOINT,
-      setData,
-      setIsFetching,
-      cleanFetchData,
     });
 
   const [isRefreshingItems, setIsRefreshingItems] = useState<boolean>(false);
@@ -187,56 +179,9 @@ export default function useOrders(): OrdersHook {
     setIsRefreshingItems(false);
   }, 200);
 
-  const [deleteQueue, setDeleteQueue] = useState<number[]>([]);
-
-  useEffect(() => {
-    // Process the delete queue
-    const processDeleteQueue = async () => {
-      try {
-        for (const id of deleteQueue) {
-          // Convert the id to a string before using it in the URL
-          const idString = id.toString();
-
-          // Send a request to delete the item with the given id
-          await axios.delete(`${API_ENDPOINT}/${idString}`);
-        }
-
-        // Clear the delete queue after processing
-      } catch (error: any) {
-        // If there's an error (deletion failed), you can handle it here
-        console.error('Error deleting item:', error.response?.data || error.message);
-
-        // If the deletion fails, revert the UI state by updating with the original array
-        const updatedData = data.filter((item) => !deleteQueue.includes(item._id));
-        optimisticUpdate(updatedData);
-      } finally {
-        // Clear the delete queue after handling the error or success
-        setDeleteQueue([]);
-      }
-    };
-
-    // Check if there are items in the delete queue to process
-    if (deleteQueue.length > 0) {
-      processDeleteQueue();
-    }
-  }, [deleteQueue, data]);
-
-  const optimisticUpdate = (updatedData: OrderData[]) => {
-    setData([...updatedData]);
-  };
-
-  const onClickDelete = (id: number) => {
-    // Add the id to the delete queue
-    setDeleteQueue((prevQueue) => [...prevQueue, id]);
-
-    // Optimistically update the UI
-    const updatedData = data.filter((item) => item._id !== id);
-    optimisticUpdate(updatedData);
-  };
   return {
     data,
     bottomText,
-    isFetching,
     containerRef,
     handleScroll,
     handleTypeChange,
@@ -247,7 +192,5 @@ export default function useOrders(): OrdersHook {
     refreshItems,
     type,
     searchQuery,
-    onClickDelete,
-    dataFetchError,
   };
 }

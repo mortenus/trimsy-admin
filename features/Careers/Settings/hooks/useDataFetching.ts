@@ -1,5 +1,5 @@
 // useDataFetching.ts
-import React from 'react';
+import { useEffect } from 'react';
 import axios from 'core/blog/axios';
 
 type TStatus = 'completed' | 'canceled' | 'pending';
@@ -40,7 +40,6 @@ export default function useDataFetching({
   setIsFetching,
   setBottomText,
 }: DataFetchingProps) {
-  const [dataFetchError, setDataFetchError] = React.useState<string | null>(null);
   const fetchData = async () => {
     if (page > totalPages) {
       setIsFetching(null);
@@ -73,17 +72,15 @@ export default function useDataFetching({
           return prevPageCount + 1;
         });
 
-        setDataFetchError(null);
-
         setIsFetching(false);
         setBottomText('Scroll down for more');
       } else {
-        setDataFetchError('There has been an error while loading orders, please refresh the page');
+        alert('There has been an error while loading data, please contact the admin.');
         console.error('Invalid data structure:', responseData);
       }
     } catch (error) {
       setIsFetching(false);
-      setDataFetchError('There has been an error while loading orders, please refresh the page');
+      setBottomText('Scroll down for more');
       console.error('Error fetching data:', error);
     }
   };
@@ -116,23 +113,22 @@ export default function useDataFetching({
           return prevPageCount + 1;
         });
 
-        setDataFetchError(null);
         setIsFetching(false);
         setBottomText('Scroll down for more');
       } else {
-        setDataFetchError('There has been an error while loading orders, please refresh the page');
+        alert('There has been an error while loading data, please contact the admin.');
         console.error('Invalid data structure:', responseData);
       }
     } catch (error) {
       setIsFetching(false);
-      setDataFetchError('There has been an error while loading orders, please refresh the page');
+      setBottomText('Scroll down for more');
       console.error('Error fetching data:', error);
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchData();
   }, []);
 
-  return { fetchData, cleanFetchData, dataFetchError };
+  return { fetchData, cleanFetchData };
 }

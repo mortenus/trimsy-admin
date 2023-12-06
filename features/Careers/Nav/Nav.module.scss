@@ -28,7 +28,14 @@
     width: 300px;
     position: fixed;
     /* width: 100%; */
-    border-right: 2px solid #000;
+    border-right: 1px solid #000;
     height: 100%;
+    padding-top: 30px;
+
+    .bar {
+      margin: 10px 35px 10px 35px;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.3);
+    }
   }
 }

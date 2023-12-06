@@ -3,9 +3,16 @@ import React from 'react';
 
 import styles from './AdminPanel.module.scss';
 import Nav from '../Nav';
-import Orders from '../Orders';
 import { useRouter } from 'next/router';
-import Dashboard from '../Dashboard';
+// import Orders from '../Orders';
+// import Dashboard from '../Dashboard';
+// import Settings from '../Settings';
+
+import dynamic from 'next/dynamic';
+
+const Dashboard = dynamic(() => import('../Dashboard'));
+const Orders = dynamic(() => import('../Orders'));
+const Settings = dynamic(() => import('../Settings'));
 
 type TAdminPanel = {
   //   onScrollEvent: any;
@@ -24,6 +31,7 @@ const AdminPanel = ({}: TAdminPanel) => {
       <Nav />
       {router.pathname === '/' && <Dashboard />}
       {router.pathname === '/orders' && <Orders />}
+      {router.pathname === '/settings' && <Settings />}
     </section>
   );
 };

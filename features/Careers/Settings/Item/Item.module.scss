@@ -1,0 +1,137 @@
+.item {
+  width: 100%;
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 15px 10px;
+
+  //   cursor: pointer;
+
+  //   &:hover {
+  //     background: #d7d7d7;
+  //   }
+
+  border-bottom: 1px solid #9f9f9f;
+
+  &:first-child {
+    border-top: 1px solid #9f9f9f;
+  }
+
+  .block {
+    display: flex;
+    align-items: inherit;
+  }
+
+  .id {
+    color: #616161;
+    font-size: 18px;
+
+    width: 75px;
+    cursor: default;
+    user-select: none;
+    overflow: hidden;
+    margin-right: 20px;
+    text-overflow: ellipsis;
+  }
+
+  .name {
+    font-size: 18px;
+    color: #000;
+    font-weight: 400;
+
+    width: 250px;
+  }
+
+  .email {
+    font-size: 18px;
+
+    color: #616161;
+    width: 250px;
+  }
+
+  .product {
+    width: 150px;
+
+    cursor: default;
+    user-select: none;
+    text-align: center;
+  }
+
+  .status {
+    text-align: center;
+    width: 100px;
+    padding: 5px;
+    background: #eee;
+
+    margin-right: 25px;
+
+    font-size: 18px;
+    font-weight: 500;
+
+    cursor: default;
+    user-select: none;
+  }
+
+  .completed {
+    color: darken(#04af00, 5%);
+
+    background: #ddf1dd;
+  }
+
+  .canceled {
+    color: #ff0000;
+
+    background: #fdebea;
+  }
+
+  .pending {
+    color: darken(rgb(255, 255, 0), 12%);
+
+    background: #f1ffca81;
+  }
+
+  .date {
+    margin-right: 10px;
+
+    cursor: default;
+    user-select: none;
+  }
+
+  .more {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    padding: 15px 8px;
+    border-radius: 50px;
+
+    cursor: pointer;
+
+    &:hover {
+      background: #d1d1d1;
+    }
+  }
+}
+
+.popup {
+  position: relative;
+  //   top: 75px;
+  //   left: -30px;
+  //   background: #fff;
+  //   box-shadow: 0 6px 18px 0 rgb(22 45 61 / 12%);
+  overflow: hidden;
+  //   padding: 50px 60px;
+  visibility: hidden;
+  opacity: 0;
+  //   transform: translateY(-100px);
+  transition: opacity 0s, visibility 0s;
+
+  &.visible {
+    margin-bottom: 30px;
+
+    visibility: visible;
+    opacity: 1;
+  }
+}

@@ -2,7 +2,7 @@ export type TStatus = 'completed' | 'canceled' | 'pending';
 
 export type TCareersOrdersObject = {
   _id: number;
-  createdAt: string;
+  created_at: string;
   general: {
     fullname: string;
     email: string;

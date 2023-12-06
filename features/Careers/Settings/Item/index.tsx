@@ -22,12 +22,6 @@ const Item = ({ data, onClickDelete }: TItem) => {
     }
   };
 
-  const formattedDate = new Date(data.createdAt).toLocaleDateString('en-GB', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-  });
-
   return (
     <>
       <div className={styles.item}>
@@ -41,7 +35,7 @@ const Item = ({ data, onClickDelete }: TItem) => {
         </div>
         <div className={styles.block}>
           <div className={statusClass}>{data.general.status}</div>
-          <span className={styles.date}>{formattedDate}</span>
+          <span className={styles.date}>{data.created_at}</span>
           <Modal onClick={callModal} />
         </div>
       </div>

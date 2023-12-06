@@ -30,9 +30,9 @@ const UserProfile = () => {
   React.useEffect(() => {
     if (localStorage.getItem('isAuth')) {
       const storedUser = localStorage.getItem('user');
-      if (!storedUser) {
-        logout();
-        return;
+      const isAuth = localStorage.getItem('isAuth');
+      if (!storedUser && !isAuth) {
+        return logout();
       }
       const storedUserParsed = JSON.parse(storedUser);
 

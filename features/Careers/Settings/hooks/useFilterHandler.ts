@@ -61,7 +61,6 @@
 // useFilterHandler.ts
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import axios from 'core/blog/axios';
 
 interface FilterHandlerHook {
   handleTypeChange: (value: string) => void;
@@ -70,48 +69,20 @@ interface FilterHandlerHook {
   clearSelection: () => void;
 }
 
-type TStatus = 'completed' | 'canceled' | 'pending';
-
-interface OrderData {
-  _id: number;
-  created_at: string;
-  general: {
-    fullname: string;
-    email: string;
-    product: string;
-    status: TStatus;
-  };
-  securityData?: {
-    ip: string;
-    userAgent: string;
-  };
-}
-
 export default function useFilterHandler({
   router,
   searchQuery,
   setSearchQuery,
   setType,
-  type,
-  API_ENDPOINT,
-  setData,
-  setIsFetching,
-  cleanFetchData,
 }: {
   router: ReturnType<typeof useRouter>;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   setType: React.Dispatch<React.SetStateAction<string>>;
   searchQuery: string;
-  type: string;
-  API_ENDPOINT: string;
-  setData: (data: OrderData[]) => void;
-  setIsFetching: (bool: boolean | null) => void;
-  cleanFetchData: () => void;
 }): FilterHandlerHook {
   const clearSelection = () => {
     setType('all');
     setSearchQuery('');
-    cleanFetchData();
     router.push('/orders');
   };
 
@@ -119,11 +90,7 @@ export default function useFilterHandler({
     if (value === 'all') {
       clearSelection();
     } else {
-      router.push(
-        `/orders?type=${encodeURIComponent(value)}${
-          searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : ''
-        }`,
-      );
+      router.push(`/orders?type=${encodeURIComponent(value)}`);
     }
   };
 
@@ -135,11 +102,7 @@ export default function useFilterHandler({
     if (!searchQuery) {
       clearSelection();
     } else {
-      router.push(
-        `/orders?search=${encodeURIComponent(searchQuery)}${
-          type !== 'all' ? `&type=${encodeURIComponent(type)}` : ''
-        }`,
-      );
+      router.push(`/orders?search=${encodeURIComponent(searchQuery)}`);
     }
   };
 
@@ -147,34 +110,13 @@ export default function useFilterHandler({
     const { search, type } = router.query;
 
     if (search) {
-      //   setType('all');
+      setType('all');
       setSearchQuery(search.toString());
     }
 
     if (type) {
-      //   clearSelection();
+      clearSelection();
       setType(type.toString());
-    }
-
-    if (router.pathname === '/orders' && router.asPath.includes('?')) {
-      // Make a request to the backend with the current query parameters
-      const fetchData = async () => {
-        try {
-          const excludedPathname = router.asPath.replace('/orders', '');
-          const response = await axios.get(`${API_ENDPOINT}/query${excludedPathname}`);
-
-          if (!response.data || response.data.length < 1) {
-            // Make it
-          }
-
-          setIsFetching(null);
-          setData(response.data);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
-
-      fetchData();
     }
   }, [router.query]);
 

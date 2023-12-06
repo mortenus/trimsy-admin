@@ -8,147 +8,9 @@ import { useOnScroll } from 'hooks/useOnScroll';
 import { Button, Input, Select, Typography } from 'antd';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import axios from 'axios';
 import LoadingOverlay from 'features/LoadingOverlay';
 import useOrders from './useOrders';
-
-// const initialData = [
-//   {
-//     general: {
-//       id: 1234,
-//       name: 'Adam Levine',
-//       email: 'adam.levine@example.com',
-//       product: 'Resume',
-//       status: 'completed',
-//       date: '28.09.2023',
-//     },
-//     securityData: {
-//       ip: '75.159.130.220',
-//       userAgent:
-//         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
-//     },
-//   },
-//   {
-//     general: {
-//       id: 1235,
-//       name: 'Danielle Russell',
-//       email: 'danielle.russell@example.com',
-//       product: 'Cover letter',
-//       status: 'canceled',
-//       date: '30.09.2023',
-//     },
-//     securityData: {
-//       ip: '72.152.132.222',
-//       userAgent:
-//         'Mozilla/522.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
-//     },
-//   },
-//   {
-//     general: {
-//       id: 1236,
-//       name: 'Daniel Craig',
-//       email: 'daniel.craig@example.com',
-//       product: 'Letter',
-//       status: 'pending',
-//       date: '31.09.2023',
-//     },
-//     securityData: {
-//       ip: '72.153.133.322',
-//       userAgent:
-//         'Mozilla/5332.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
-//     },
-//   },
-//   {
-//     general: {
-//       id: 1234,
-//       name: 'Adam Levine',
-//       email: 'adam.levine@example.com',
-//       product: 'Resume',
-//       status: 'completed',
-//       date: '28.09.2023',
-//     },
-//     securityData: {
-//       ip: '75.159.130.220',
-//       userAgent:
-//         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
-//     },
-//   },
-//   {
-//     general: {
-//       id: 1235,
-//       name: 'Danielle Russell',
-//       email: 'danielle.russell@example.com',
-//       product: 'Cover letter',
-//       status: 'canceled',
-//       date: '30.09.2023',
-//     },
-//     securityData: {
-//       ip: '72.152.132.222',
-//       userAgent:
-//         'Mozilla/522.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
-//     },
-//   },
-//   {
-//     general: {
-//       id: 1236,
-//       name: 'Daniel Craig',
-//       email: 'daniel.craig@example.com',
-//       product: 'Letter',
-//       status: 'pending',
-//       date: '31.09.2023',
-//     },
-//     securityData: {
-//       ip: '72.153.133.322',
-//       userAgent:
-//         'Mozilla/5332.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
-//     },
-//   },
-//   {
-//     general: {
-//       id: 1234,
-//       name: 'Adam Levine',
-//       email: 'adam.levine@example.com',
-//       product: 'Resume',
-//       status: 'completed',
-//       date: '28.09.2023',
-//     },
-//     securityData: {
-//       ip: '75.159.130.220',
-//       userAgent:
-//         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
-//     },
-//   },
-//   {
-//     general: {
-//       id: 1235,
-//       name: 'Danielle Russell',
-//       email: 'danielle.russell@example.com',
-//       product: 'Cover letter',
-//       status: 'canceled',
-//       date: '30.09.2023',
-//     },
-//     securityData: {
-//       ip: '72.152.132.222',
-//       userAgent:
-//         'Mozilla/522.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
-//     },
-//   },
-//   {
-//     general: {
-//       id: 1236,
-//       name: 'Daniel Craig',
-//       email: 'daniel.craig@example.com',
-//       product: 'Letter',
-//       status: 'pending',
-//       date: '31.09.2023',
-//     },
-//     securityData: {
-//       ip: '72.153.133.322',
-//       userAgent:
-//         'Mozilla/5332.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
-//     },
-//   },
-// ];
+import axios from 'core/blog/axios';
 
 const Orders = () => {
   //   const [data, setData] = React.useState<any[]>([]);
@@ -318,11 +180,10 @@ const Orders = () => {
     isRefreshingItems,
     refreshItems,
     type,
+    onClickDelete,
+    dataFetchError,
+    isFetching,
   } = useOrders();
-
-  const onClickDelete = (obj: any) => {
-    console.log('deleting', obj);
-  };
 
   return (
     <section className={styles.wrapper}>
@@ -342,7 +203,7 @@ const Orders = () => {
                   onChange={handleSearchValueChange}
                   onPressEnter={handleSearch}
                   style={{ width: 250 }}
-                  allowClear
+                  //   allowClear
                 />
               </div>
               <div>
@@ -406,16 +267,20 @@ const Orders = () => {
             </div>
           </div>
           <div className={styles.grid} ref={containerRef} onScroll={handleScroll}>
-            {!data || data.length < 1 ? (
+            {dataFetchError ? (
+              <h5>error</h5>
+            ) : !data || data.length < 1 ? (
               <LoadingOverlay />
             ) : (
               <>
                 {data.map((obj, key) => (
-                  <Item key={key} onClickDelete={() => onClickDelete(obj)} data={obj} />
+                  <Item key={key} onClickDelete={() => onClickDelete(obj._id)} data={obj} />
                 ))}
-                <div className={styles['bottom-container']}>
-                  <p className={styles[`bottom-text`]}>{bottomText}</p>
-                </div>
+                {isFetching !== null && (
+                  <div className={styles['bottom-container']}>
+                    <p className={styles[`bottom-text`]}>{bottomText}</p>
+                  </div>
+                )}
               </>
             )}
           </div>

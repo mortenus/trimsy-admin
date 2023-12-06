@@ -1,0 +1,118 @@
+.more {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  padding: 15px 8px;
+  border-radius: 50px;
+
+  cursor: pointer;
+  user-select: none;
+
+  margin-right: 15px;
+
+  &:hover {
+    background: #d1d1d1;
+
+    svg {
+      path {
+        fill: #000;
+      }
+    }
+  }
+
+  .overflow {
+    position: absolute;
+    top: 30px;
+    right: 0;
+
+    z-index: 9999;
+    backdrop-filter: blur(35px);
+
+    cursor: default;
+  }
+
+  .overlayVisible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .content {
+    z-index: 1100;
+    background: #fff;
+    box-shadow: 0 0 15px rgba(101, 119, 134, 0.2), 0 0 3px 1px rgba(101, 119, 134, 0.15);
+    //   padding: 50px 50px 30px 50px;
+    position: relative;
+    //   padding: 10px 25px;
+
+    user-select: none;
+    border-radius: 12px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    @media (max-width: 734px) {
+      margin: 0 auto;
+      border-radius: 0;
+    }
+
+    .close {
+      cursor: pointer;
+      position: sticky;
+      top: 34px;
+      margin-left: 35px;
+      margin-top: 24px;
+      width: 15px;
+      z-index: 1;
+    }
+
+    .button {
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+
+      padding: 10px 30px;
+      cursor: pointer;
+
+      .title {
+        font-size: 14px;
+      }
+
+      &:hover {
+        background: #dbdbdb;
+      }
+    }
+
+    .delete {
+      .title {
+        color: red;
+      }
+
+      svg {
+        width: 15px;
+        height: 15px;
+
+        margin-right: 5px;
+
+        position: absolute;
+        left: 10px;
+
+        path {
+          fill: red;
+        }
+      }
+    }
+
+    .additional {
+      svg {
+        width: 15px;
+        height: 15px;
+
+        margin-left: 5px;
+
+        position: absolute;
+
+        right: 15px;
+      }
+    }
+  }
+}
