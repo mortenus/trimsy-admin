@@ -34,6 +34,9 @@ const UserProfile = () => {
       if (!storedUser && !isAuth) {
         return logout();
       }
+
+      if (storedUser === null) return;
+
       const storedUserParsed = JSON.parse(storedUser);
 
       setUserData(storedUserParsed);

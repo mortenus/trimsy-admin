@@ -62,29 +62,13 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'core/blog/axios';
+import { OrderData } from '../Orders.types';
 
 interface FilterHandlerHook {
   handleTypeChange: (value: string) => void;
   handleSearchValueChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSearch: () => void;
   clearSelection: () => void;
-}
-
-type TStatus = 'completed' | 'canceled' | 'pending';
-
-interface OrderData {
-  _id: number;
-  created_at: string;
-  general: {
-    fullname: string;
-    email: string;
-    product: string;
-    status: TStatus;
-  };
-  securityData?: {
-    ip: string;
-    userAgent: string;
-  };
 }
 
 export default function useFilterHandler({

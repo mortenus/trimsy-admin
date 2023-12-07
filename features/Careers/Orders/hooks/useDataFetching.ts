@@ -1,23 +1,7 @@
 // useDataFetching.ts
 import React from 'react';
 import axios from 'core/blog/axios';
-
-type TStatus = 'completed' | 'canceled' | 'pending';
-
-interface OrderData {
-  _id: number;
-  created_at: string;
-  general: {
-    fullname: string;
-    email: string;
-    product: string;
-    status: TStatus;
-  };
-  securityData?: {
-    ip: string;
-    userAgent: string;
-  };
-}
+import { OrderData } from '../Orders.types';
 
 interface DataFetchingProps {
   API_ENDPOINT: string;

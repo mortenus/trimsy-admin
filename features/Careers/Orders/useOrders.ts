@@ -99,23 +99,7 @@ import useDataFetching from './hooks/useDataFetching';
 import useScrollHandler from './hooks/useScrollHandler';
 import useFilterHandler from './hooks/useFilterHandler';
 import debounce from 'utils/debounce';
-
-type TStatus = 'completed' | 'canceled' | 'pending';
-
-interface OrderData {
-  _id: number;
-  created_at: string;
-  general: {
-    fullname: string;
-    email: string;
-    product: string;
-    status: TStatus;
-  };
-  securityData?: {
-    ip: string;
-    userAgent: string;
-  };
-}
+import { OrderData } from './Orders.types';
 
 interface OrdersHook {
   data: OrderData[];
