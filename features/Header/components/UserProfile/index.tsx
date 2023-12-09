@@ -18,21 +18,29 @@ interface IUser {
 }
 
 const UserProfile = () => {
+  const router = useRouter();
+
   const { showModal, handleModalChange, ref, additionalRef } = useProfile();
 
   const logout = useLogout();
 
+  const handleLogout = () => {
+    logout();
+    setUserData(null);
+    setIsLocalAuth(false);
+  };
+
   const [userData, setUserData] = React.useState<null | IUser>(null);
+  const [isLocalAuth, setIsLocalAuth] = React.useState(userData !== null);
 
   //   const userData = localStorage.getItem('user');
-  const router = useRouter();
 
   React.useEffect(() => {
     if (localStorage.getItem('isAuth')) {
       const storedUser = localStorage.getItem('user');
       const isAuth = localStorage.getItem('isAuth');
       if (!storedUser && !isAuth) {
-        return logout();
+        return handleLogout();
       }
 
       if (storedUser === null) return;
@@ -40,12 +48,13 @@ const UserProfile = () => {
       const storedUserParsed = JSON.parse(storedUser);
 
       setUserData(storedUserParsed);
+      setIsLocalAuth(true);
     }
   }, [router.pathname]);
 
   return (
     <div className={styles.wrap}>
-      {userData && (
+      {userData && isLocalAuth && (
         <>
           <div className={styles.menu} onClick={handleModalChange} ref={additionalRef}>
             <div className={styles.image}>
@@ -69,10 +78,8 @@ const UserProfile = () => {
                   {/* <div className={styles[`modal-button`]}>
                 <span className={styles[`modal-button--title`]}>Change department</span>
               </div> */}
-                  <div className={styles[`modal-button`]}>
-                    <span className={styles[`modal-button--title`]} onClick={logout}>
-                      Log out
-                    </span>
+                  <div className={styles[`modal-button`]} onClick={handleLogout}>
+                    <span className={styles[`modal-button--title`]}>Log out</span>
                   </div>
                 </div>
               </div>

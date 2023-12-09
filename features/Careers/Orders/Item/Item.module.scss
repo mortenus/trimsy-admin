@@ -34,6 +34,10 @@
     overflow: hidden;
     margin-right: 20px;
     text-overflow: ellipsis;
+
+    @media (max-width: 1280px) {
+      display: none;
+    }
   }
 
   .name {
@@ -42,6 +46,10 @@
     font-weight: 400;
 
     width: 250px;
+
+    @media (max-width: 1280px) {
+      width: 150px;
+    }
   }
 
   .email {
@@ -63,7 +71,7 @@
     text-align: center;
     width: 100px;
     padding: 5px;
-    background: #eee;
+    // background: #eee;
 
     margin-right: 25px;
 
@@ -72,9 +80,13 @@
 
     cursor: default;
     user-select: none;
+
+    @media (max-width: 1280px) {
+      display: none;
+    }
   }
 
-  .completed {
+  .new {
     color: darken(#04af00, 5%);
 
     background: #ddf1dd;

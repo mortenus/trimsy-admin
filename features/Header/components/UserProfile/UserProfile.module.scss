@@ -4,9 +4,13 @@
   align-items: center;
 
   height: 100%;
-  width: 350px;
+  width: 400px;
 
   margin-right: 50px;
+
+  @media (max-width: 1280px) {
+    width: 600px;
+  }
 
   .menu {
     display: flex;
@@ -103,6 +107,9 @@
   }
 
   .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
 
     .name {
@@ -110,12 +117,20 @@
       font-weight: bold;
 
       color: rgb(29, 29, 31);
+
+      @media (max-width: 1280px) {
+        font-size: 12px;
+      }
     }
 
     .position {
       font-size: 14px;
       font-weight: 500;
       color: rgb(110, 110, 115);
+
+      @media (max-width: 1280px) {
+        font-size: 12px;
+      }
     }
   }
 }

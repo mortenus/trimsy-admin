@@ -80,7 +80,7 @@ const Header = ({ handleFormChange, handleKeyDownOverflowChange }: THeader) => {
               )}
             </div>
             <UserProfile />
-            {/* <Hamburger handleFormChange={handleFormChange} /> */}
+            <Hamburger handleFormChange={handleFormChange} />
           </nav>
         </div>
       </header>

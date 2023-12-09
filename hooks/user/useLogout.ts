@@ -5,7 +5,9 @@ export default function useLogout() {
   const router = useRouter();
 
   const logout = () => {
-    router.push('/auth/signout');
+    localStorage.clear();
+    localStorage.setItem('isAuth', 'false');
+    router.push('/');
   };
 
   return logout;

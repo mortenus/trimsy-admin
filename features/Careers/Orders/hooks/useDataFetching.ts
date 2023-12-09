@@ -80,7 +80,6 @@ export default function useDataFetching({
     setBottomText('Loading...');
 
     try {
-      console.log('sending');
       const response = await axios.get(API_ENDPOINT, {
         params: { page: 1 },
       });

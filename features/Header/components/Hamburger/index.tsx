@@ -10,29 +10,34 @@ import useHideScrollOnTrue from 'hooks/useHideScrollOnTrue';
 const linkRows = [
   {
     id: 0,
-    title: 'About',
-    href: '/about',
+    title: 'Dashboard',
+    href: '/',
   },
+  //   {
+  //     id: 1,
+  //     title: 'Services',
+  //     links: [
+  //       {
+  //         title: 'Web Development',
+  //         description: 'Discover all the ways to get your presence in Web',
+  //         href: '/development',
+  //       },
+  //       {
+  //         title: 'Marketplace',
+  //         description: 'Get a professional to help you in your IT journey',
+  //         href: '/careers',
+  //       },
+  //     ],
+  //   },
   {
-    id: 1,
-    title: 'Services',
-    links: [
-      {
-        title: 'Web Development',
-        description: 'Discover all the ways to get your presence in Web',
-        href: '/development',
-      },
-      {
-        title: 'Marketplace',
-        description: 'Get a professional to help you in your IT journey',
-        href: '/careers',
-      },
-    ],
+    id: 2,
+    title: 'Orders',
+    href: '/orders',
   },
   {
     id: 2,
-    title: 'Blog',
-    href: '/blog',
+    title: 'Settings',
+    href: '/Settings',
   },
 ];
 

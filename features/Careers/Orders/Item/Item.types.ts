@@ -1,4 +1,4 @@
-export type TStatus = 'completed' | 'canceled' | 'pending';
+export type TStatus = 'completed' | 'canceled' | 'pending' | 'new';
 
 export type TCareersOrdersObject = {
   _id: number;

@@ -25,7 +25,7 @@ const LoginFormContainer = withFormik({
     const { router } = props;
 
     axios
-      .post('http://localhost:3001/user/signin', values)
+      .post('http://localhost:3001/auth/admin/signin', values)
       .then(({ data }) => {
         const { token } = data;
         window.axios.defaults.headers.common['token'] = token;
@@ -34,7 +34,7 @@ const LoginFormContainer = withFormik({
         localStorage.setItem('token', token);
 
         axios
-          .get('http://localhost:3001/user/me')
+          .get('http://localhost:3001/admin/me')
           .then(({ data }) => {
             localStorage.setItem('user', JSON.stringify(data));
             localStorage.setItem('isAuth', true);

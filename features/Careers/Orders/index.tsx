@@ -187,10 +187,6 @@ const Orders = () => {
     isFetchingQuieries,
   } = useOrders();
 
-  React.useEffect(() => {
-    console.log('DATA CHANEGDDDD');
-  }, [data]);
-
   return (
     <section className={styles.wrapper}>
       <Headline

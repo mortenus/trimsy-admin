@@ -24,7 +24,7 @@ const Item = ({ data, onClickDelete, onTypeChange }: TItem) => {
   const [statusState, setStatusState] = React.useState<TStatus>(data.general.status);
 
   const statusClass = clsx(styles.status, {
-    [styles.completed]: statusState === 'completed',
+    [styles.new]: statusState === 'new',
     [styles.canceled]: statusState === 'canceled',
     [styles.pending]: statusState === 'pending',
   });
@@ -251,6 +251,14 @@ const Item = ({ data, onClickDelete, onTypeChange }: TItem) => {
                 </span>
               </header>
               <div className={styles['modal-buttons']}>
+                <Button
+                  className={styles[`modal-order-button`]}
+                  type="nav"
+                  size="small"
+                  color="transparent"
+                  onClick={() => handleTypeChange('pending')}>
+                  Pending
+                </Button>
                 <Button
                   className={styles[`modal-order-button`]}
                   type="nav"
