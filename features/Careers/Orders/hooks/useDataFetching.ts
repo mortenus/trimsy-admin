@@ -118,5 +118,5 @@ export default function useDataFetching({
     fetchData();
   }, []);
 
-  return { fetchData, cleanFetchData, dataFetchError };
+  return { fetchData, cleanFetchData, setDataFetchError, dataFetchError };
 }

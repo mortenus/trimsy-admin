@@ -8,6 +8,7 @@ export type TCareersOrdersObject = {
     email: string;
     product: string;
     status: TStatus;
+    description?: string;
   };
   securityData?: {
     ip: string;
@@ -18,6 +19,7 @@ export type TCareersOrdersObject = {
 export interface TItem {
   data: TCareersOrdersObject;
   onClickDelete: (obj: TCareersOrdersObject) => void;
+  onTypeChange: (type: string) => void;
 }
 
 // export type TItem = {

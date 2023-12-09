@@ -1,5 +1,5 @@
 type TModal = {
-  onClick: (type: string) => void;
+  onClick: (type: any) => void;
 };
 
 export default TModal;

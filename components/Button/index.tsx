@@ -18,9 +18,11 @@ const Button = ({
   color,
   tabIndex,
   onKeyDown,
+  className,
 }: TButton) => {
   const stylying = clsx(
     styles.wrapper,
+    className && className,
     { [styles['wrapper--disabled_black']]: disabled === 'black' },
     { [styles['wrapper--disabled_white']]: disabled === 'white' },
     { [styles.black__inverse]: color === 'black-inverse' },
@@ -47,14 +49,15 @@ const Button = ({
           <div className={stylying}>{children}</div>
         </Link>
       ) : (
-        <div
+        <button
           style={style && style}
           onClick={onClick}
           className={stylying}
           tabIndex={tabIndex || 0}
-          onKeyDown={onKeyDown}>
+          onKeyDown={onKeyDown}
+          disabled={!!disabled}>
           {children}
-        </div>
+        </button>
       )}
     </>
   );

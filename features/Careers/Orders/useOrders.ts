@@ -113,10 +113,12 @@ interface OrdersHook {
   isRefreshingItems: boolean;
   refreshItems: () => void;
   onClickDelete: (id: number) => void;
+  onTypeChange: (type: string, id: number) => void;
   type: string;
   searchQuery: string;
   dataFetchError?: string | null;
   isFetching: boolean | null;
+  isFetchingQuieries: boolean;
 }
 
 const API_ENDPOINT = 'http://localhost:3001/admin/careers';
@@ -133,7 +135,7 @@ export default function useOrders(): OrdersHook {
   const [type, setType] = useState('all');
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { fetchData, cleanFetchData, dataFetchError } = useDataFetching({
+  const { fetchData, cleanFetchData, dataFetchError, setDataFetchError } = useDataFetching({
     API_ENDPOINT,
     page,
     totalPages,
@@ -150,18 +152,24 @@ export default function useOrders(): OrdersHook {
     isFetching,
   });
 
-  const { handleTypeChange, handleSearchValueChange, handleSearch, clearSelection } =
-    useFilterHandler({
-      router,
-      setSearchQuery,
-      setType,
-      searchQuery,
-      type,
-      API_ENDPOINT,
-      setData,
-      setIsFetching,
-      cleanFetchData,
-    });
+  const {
+    handleTypeChange,
+    handleSearchValueChange,
+    handleSearch,
+    clearSelection,
+    isFetchingQuieries,
+  } = useFilterHandler({
+    router,
+    setSearchQuery,
+    setType,
+    searchQuery,
+    type,
+    API_ENDPOINT,
+    setData,
+    setIsFetching,
+    cleanFetchData,
+    setDataFetchError,
+  });
 
   const [isRefreshingItems, setIsRefreshingItems] = useState<boolean>(false);
 
@@ -217,6 +225,37 @@ export default function useOrders(): OrdersHook {
     const updatedData = data.filter((item) => item._id !== id);
     optimisticUpdate(updatedData);
   };
+
+  const onTypeChange = async (status: string, id: number) => {
+    try {
+      const patchData = {
+        id,
+        status,
+      };
+
+      await axios.patch(`${API_ENDPOINT}/status`, patchData).then(() => {
+        // Update the status of a specific item
+        const updatedItems = data.map((item) =>
+          item._id === id ? { ...item, status: status } : item,
+        );
+
+        console.log('updated items:', updatedItems);
+
+        setData(updatedItems);
+      });
+
+      // Clear the delete queue after processing
+    } catch (error: any) {
+      // If there's an error (deletion failed), you can handle it here
+      console.error('Error patching item with status:', error.response?.data || error.message);
+
+      // If the deletion fails, revert the UI state by updating with the original array
+      //   const updatedData = data.filter((item) => !deleteQueue.includes(item._id));
+      //   optimisticUpdate(updatedData);
+    } finally {
+    }
+  };
+
   return {
     data,
     bottomText,
@@ -233,5 +272,7 @@ export default function useOrders(): OrdersHook {
     searchQuery,
     onClickDelete,
     dataFetchError,
+    onTypeChange,
+    isFetchingQuieries,
   };
 }

@@ -183,7 +183,13 @@ const Orders = () => {
     onClickDelete,
     dataFetchError,
     isFetching,
+    onTypeChange,
+    isFetchingQuieries,
   } = useOrders();
+
+  React.useEffect(() => {
+    console.log('DATA CHANEGDDDD');
+  }, [data]);
 
   return (
     <section className={styles.wrapper}>
@@ -268,13 +274,18 @@ const Orders = () => {
           </div>
           <div className={styles.grid} ref={containerRef} onScroll={handleScroll}>
             {dataFetchError ? (
-              <h5>error</h5>
-            ) : !data || data.length < 1 ? (
+              <h5>{dataFetchError}</h5>
+            ) : !data || data.length < 1 || isFetchingQuieries ? (
               <LoadingOverlay />
             ) : (
               <>
                 {data.map((obj, key) => (
-                  <Item key={key} onClickDelete={() => onClickDelete(obj._id)} data={obj} />
+                  <Item
+                    key={obj._id}
+                    onClickDelete={() => onClickDelete(obj._id)}
+                    onTypeChange={(type: string) => onTypeChange(type, obj._id)}
+                    data={obj}
+                  />
                 ))}
                 {isFetching !== null && (
                   <div className={styles['bottom-container']}>

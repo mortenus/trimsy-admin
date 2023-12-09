@@ -40,7 +40,15 @@
   .content {
     z-index: 1100;
     background: #fff;
-    box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(101, 119, 134, 0.2), 0 0 3px 1px rgba(101, 119, 134, 0.15);
+    //   padding: 50px 50px 30px 50px;
+    position: relative;
+    //   padding: 10px 25px;
+
+    user-select: none;
+    border-radius: 12px;
+    overflow-x: hidden;
+    overflow-y: hidden;
     //   padding: 50px 50px 30px 50px;
     position: relative;
     //   padding: 10px 25px;

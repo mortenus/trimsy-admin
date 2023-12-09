@@ -91,15 +91,19 @@ $blue: rgb(22, 106, 234);
   }
 
   &.transparent {
-    background: rgba(0, 0, 0, 0.4);
-    color: #fff;
-    border: 2px solid transparent;
+    // background: rgba(0, 0, 0, 0.4);
+    color: #000;
+    border: 1px solid #000;
+
+    background: transparent;
 
     &:hover {
       //   background: lighten($blue, 10%);
       //   color: #000;
       //   background: #fff;
-      background: rgba(0, 0, 0, 0.55);
+      //   background: rgba(0, 0, 0, 0.55);
+      background: #000;
+      color: #fff;
     }
   }
 
@@ -122,38 +126,26 @@ $blue: rgb(22, 106, 234);
   &.supersmall {
     font-size: 14px;
 
-    text-align: center;
-
     font-weight: 400;
-    width: auto;
     padding: 4px 12px;
     line-height: 1.3333333333;
   }
 
   &.small {
-    font-size: 18px;
-
-    text-align: center;
-
-    font-weight: 400;
-
-    width: auto;
     padding: 8px 20px;
+
+    font-size: 18px;
+    font-weight: 400;
   }
 
   &.medium {
     width: 200px;
-
     font-size: 20px;
-
-    text-align: center;
   }
 
   &.large {
     width: 300px;
     font-size: 24px;
-
-    text-align: center;
   }
 
   // Types

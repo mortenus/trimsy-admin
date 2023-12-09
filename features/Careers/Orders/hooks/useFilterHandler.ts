@@ -69,6 +69,7 @@ interface FilterHandlerHook {
   handleSearchValueChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSearch: () => void;
   clearSelection: () => void;
+  isFetchingQuieries: boolean;
 }
 
 export default function useFilterHandler({
@@ -81,6 +82,7 @@ export default function useFilterHandler({
   setData,
   setIsFetching,
   cleanFetchData,
+  setDataFetchError,
 }: {
   router: ReturnType<typeof useRouter>;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
@@ -91,7 +93,10 @@ export default function useFilterHandler({
   setData: (data: OrderData[]) => void;
   setIsFetching: (bool: boolean | null) => void;
   cleanFetchData: () => void;
+  setDataFetchError: (err: string) => void;
 }): FilterHandlerHook {
+  const [isFetchingQuieries, setIsFetchingQuieries] = useState<boolean>(false);
+
   const clearSelection = () => {
     setType('all');
     setSearchQuery('');
@@ -143,18 +148,23 @@ export default function useFilterHandler({
     if (router.pathname === '/orders' && router.asPath.includes('?')) {
       // Make a request to the backend with the current query parameters
       const fetchData = async () => {
+        setIsFetchingQuieries(true);
+        setDataFetchError('');
         try {
           const excludedPathname = router.asPath.replace('/orders', '');
           const response = await axios.get(`${API_ENDPOINT}/query${excludedPathname}`);
 
           if (!response.data || response.data.length < 1) {
-            // Make it
+            setDataFetchError('No orders were found that match the criteria');
           }
 
           setIsFetching(null);
           setData(response.data);
         } catch (error) {
           console.error('Error fetching data:', error);
+          setDataFetchError(`Error fetching data:', ${error}`);
+        } finally {
+          setIsFetchingQuieries(false);
         }
       };
 
@@ -162,5 +172,11 @@ export default function useFilterHandler({
     }
   }, [router.query]);
 
-  return { handleTypeChange, handleSearchValueChange, handleSearch, clearSelection };
+  return {
+    handleTypeChange,
+    handleSearchValueChange,
+    handleSearch,
+    clearSelection,
+    isFetchingQuieries,
+  };
 }
