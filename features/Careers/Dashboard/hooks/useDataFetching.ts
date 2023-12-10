@@ -1,29 +1,13 @@
 // useDataFetching.ts
-import { useEffect } from 'react';
+import React from 'react';
 import axios from 'core/blog/axios';
-
-type TStatus = 'completed' | 'canceled' | 'pending';
-
-interface OrderData {
-  _id: number;
-  created_at: string;
-  general: {
-    fullname: string;
-    email: string;
-    product: string;
-    status: TStatus;
-  };
-  securityData?: {
-    ip: string;
-    userAgent: string;
-  };
-}
+import { DashboardData } from '../Dashboard.types';
 
 interface DataFetchingProps {
   API_ENDPOINT: string;
   page: number;
   totalPages: number;
-  setData: React.Dispatch<React.SetStateAction<OrderData[]>>;
+  setData: React.Dispatch<React.SetStateAction<DashboardData>>;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   setTotalPages: React.Dispatch<React.SetStateAction<number>>;
   setIsFetching: React.Dispatch<React.SetStateAction<boolean | null>>;
@@ -40,6 +24,8 @@ export default function useDataFetching({
   setIsFetching,
   setBottomText,
 }: DataFetchingProps) {
+  const [dataFetchError, setDataFetchError] = React.useState<string | null>(null);
+
   const fetchData = async () => {
     if (page > totalPages) {
       setIsFetching(null);
@@ -51,84 +37,74 @@ export default function useDataFetching({
     setBottomText('Loading...');
 
     try {
-      console.log('sending');
       const response = await axios.get(API_ENDPOINT, {
         params: { page },
       });
 
-      const responseData = response.data;
+      const responseData = response.data.slice(0, 3);
 
       if (responseData) {
-        setData((prev) => [...prev, ...responseData.items]);
-        setTotalPages(responseData.totalPages);
+        setData(responseData);
+        setIsFetching(null);
 
-        setPage((prevPageCount) => {
-          console.log(prevPageCount, responseData.totalPages);
-          if (prevPageCount >= responseData.totalPages) {
-            setIsFetching(null);
-            setBottomText('All orders loaded');
-          }
+        // setTotalPages(responseData.totalPages);
 
-          return prevPageCount + 1;
-        });
+        // setPage((prevPageCount) => {
+        //   console.log(prevPageCount, responseData.totalPages);
+        //   if (prevPageCount >= responseData.totalPages) {
+        //     setIsFetching(null);
+        //     setBottomText('All orders loaded');
+        //   }
+
+        //   return prevPageCount + 1;
+        // });
+
+        setDataFetchError(null);
 
         setIsFetching(false);
         setBottomText('Scroll down for more');
       } else {
-        alert('There has been an error while loading data, please contact the admin.');
+        setDataFetchError('There has been an error while loading orders, please refresh the page');
         console.error('Invalid data structure:', responseData);
       }
     } catch (error) {
       setIsFetching(false);
-      setBottomText('Scroll down for more');
+      setDataFetchError('There has been an error while loading orders, please refresh the page');
       console.error('Error fetching data:', error);
     }
   };
 
   const cleanFetchData = async () => {
-    setData([]);
     setPage(1);
 
     setIsFetching(true);
     setBottomText('Loading...');
 
     try {
-      console.log('sending');
-      const response = await axios.get(API_ENDPOINT, {
-        params: { page: 1 },
-      });
+      const resp = await axios.get(`${API_ENDPOINT}/dashboard`);
 
-      const responseData = response.data;
+      const data = resp.data;
 
-      if (responseData) {
-        setData(responseData.items);
-        setTotalPages(responseData.totalPages);
+      if (data) {
+        setData(data);
+        // setIsFetching(null);
 
-        setPage((prevPageCount) => {
-          if (prevPageCount >= responseData.totalPages) {
-            setIsFetching(null);
-            setBottomText('All orders loaded');
-          }
-
-          return prevPageCount + 1;
-        });
-
-        setIsFetching(false);
-        setBottomText('Scroll down for more');
+        // setDataFetchError(null);
+        setIsFetching(null);
       } else {
-        alert('There has been an error while loading data, please contact the admin.');
+        setDataFetchError('There has been an error while loading orders, please refresh the page');
         console.error('Invalid data structure:', responseData);
       }
     } catch (error) {
       setIsFetching(false);
-      setBottomText('Scroll down for more');
+      setDataFetchError('There has been an error while loading orders, please refresh the page');
       console.error('Error fetching data:', error);
     }
   };
 
-  useEffect(() => {
-    fetchData();
+  React.useEffect(() => {
+    cleanFetchData();
   }, []);
 
-  return { fetchData, cleanFetchData };
+  return { fetchData, cleanFetchData, setDataFetchError, dataFetchError };
 }

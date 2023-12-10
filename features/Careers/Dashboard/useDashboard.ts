@@ -99,26 +99,10 @@ import useDataFetching from './hooks/useDataFetching';
 import useScrollHandler from './hooks/useScrollHandler';
 import useFilterHandler from './hooks/useFilterHandler';
 import debounce from 'utils/debounce';
-
-type TStatus = 'completed' | 'canceled' | 'pending';
-
-interface OrderData {
-  _id: number;
-  created_at: string;
-  general: {
-    fullname: string;
-    email: string;
-    product: string;
-    status: TStatus;
-  };
-  securityData?: {
-    ip: string;
-    userAgent: string;
-  };
-}
+import { DashboardData } from './Dashboard.types';
 
 interface OrdersHook {
-  data: OrderData[];
+  data: DashboardData;
   bottomText: string;
   containerRef: React.RefObject<HTMLDivElement>;
   handleScroll: () => void;
@@ -128,8 +112,13 @@ interface OrdersHook {
   clearSelection: () => void;
   isRefreshingItems: boolean;
   refreshItems: () => void;
+  onClickDelete: (id: number) => void;
+  onTypeChange: (type: string, id: number) => void;
   type: string;
   searchQuery: string;
+  dataFetchError?: string | null;
+  isFetching: boolean | null;
+  isFetchingQuieries: boolean;
 }
 
 const API_ENDPOINT = 'http://localhost:3001/admin/careers';
@@ -137,7 +126,12 @@ const API_ENDPOINT = 'http://localhost:3001/admin/careers';
 export default function useOrders(): OrdersHook {
   const router = useRouter();
 
-  const [data, setData] = useState<OrderData[]>([]);
+  const [data, setData] = useState<DashboardData>({
+    totalOrders: 0,
+    newStatus: 0,
+    pendingStatus: 0,
+    items: [],
+  });
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(2);
   const [isFetching, setIsFetching] = useState<boolean | null>(true);
@@ -146,7 +140,7 @@ export default function useOrders(): OrdersHook {
   const [type, setType] = useState('all');
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { fetchData, cleanFetchData } = useDataFetching({
+  const { fetchData, cleanFetchData, dataFetchError, setDataFetchError } = useDataFetching({
     API_ENDPOINT,
     page,
     totalPages,
@@ -163,13 +157,24 @@ export default function useOrders(): OrdersHook {
     isFetching,
   });
 
-  const { handleTypeChange, handleSearchValueChange, handleSearch, clearSelection } =
-    useFilterHandler({
-      router,
-      setSearchQuery,
-      setType,
-      searchQuery,
-    });
+  const {
+    handleTypeChange,
+    handleSearchValueChange,
+    handleSearch,
+    clearSelection,
+    isFetchingQuieries,
+  } = useFilterHandler({
+    router,
+    setSearchQuery,
+    setType,
+    searchQuery,
+    type,
+    API_ENDPOINT,
+    setData,
+    setIsFetching,
+    cleanFetchData,
+    setDataFetchError,
+  });
 
   const [isRefreshingItems, setIsRefreshingItems] = useState<boolean>(false);
 
@@ -182,6 +187,7 @@ export default function useOrders(): OrdersHook {
   return {
     data,
     bottomText,
+    isFetching,
     containerRef,
     handleScroll,
     handleTypeChange,
@@ -192,5 +198,7 @@ export default function useOrders(): OrdersHook {
     refreshItems,
     type,
     searchQuery,
+    dataFetchError,
+    isFetchingQuieries,
   };
 }

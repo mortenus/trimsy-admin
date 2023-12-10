@@ -1,13 +1,14 @@
-export type TStatus = 'completed' | 'canceled' | 'pending';
+export type TStatus = 'completed' | 'canceled' | 'pending' | 'new';
 
 export type TCareersOrdersObject = {
   _id: number;
-  created_at: string;
+  createdAt: string;
   general: {
     fullname: string;
     email: string;
     product: string;
     status: TStatus;
+    description?: string;
   };
   securityData?: {
     ip: string;
@@ -18,6 +19,7 @@ export type TCareersOrdersObject = {
 export interface TItem {
   data: TCareersOrdersObject;
   onClickDelete: (obj: TCareersOrdersObject) => void;
+  onTypeChange: (type: string) => void;
 }
 
 // export type TItem = {

@@ -78,6 +78,9 @@ const UserProfile = () => {
                   {/* <div className={styles[`modal-button`]}>
                 <span className={styles[`modal-button--title`]}>Change department</span>
               </div> */}
+                  {/* <div className={styles[`modal-button`]}>
+                    <span className={styles[`modal-button--title`]}>Change Department</span>
+                  </div> */}
                   <div className={styles[`modal-button`]} onClick={handleLogout}>
                     <span className={styles[`modal-button--title`]}>Log out</span>
                   </div>

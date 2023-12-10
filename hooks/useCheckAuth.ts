@@ -74,7 +74,7 @@ export default function useCheckAuth() {
 
       if (storedAuth) {
         axios
-          .get('http://localhost:3001/user/me')
+          .get('http://localhost:3001/admin/me')
           .then(({ data }) => {
             //   localStorage.setItem('user', JSON.stringify(data));
 
