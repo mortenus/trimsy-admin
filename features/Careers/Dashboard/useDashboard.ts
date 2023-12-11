@@ -101,7 +101,7 @@ import useFilterHandler from './hooks/useFilterHandler';
 import debounce from 'utils/debounce';
 import { DashboardData } from './Dashboard.types';
 
-interface OrdersHook {
+interface DashboardHook {
   data: DashboardData;
   bottomText: string;
   containerRef: React.RefObject<HTMLDivElement>;
@@ -123,7 +123,7 @@ interface OrdersHook {
 
 const API_ENDPOINT = 'http://localhost:3001/admin/careers';
 
-export default function useOrders(): OrdersHook {
+export default function useOrders(): DashboardHook {
   const router = useRouter();
 
   const [data, setData] = useState<DashboardData>({

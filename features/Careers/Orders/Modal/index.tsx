@@ -58,8 +58,8 @@ const Modal = ({ onClick }: TModal) => {
                   <path
                     d="M11 5L1 5M11 5L6.71429 9M11 5L6.71429 1"
                     stroke="black"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </div>

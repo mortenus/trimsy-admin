@@ -6,7 +6,7 @@ import styles from './Item.module.scss';
 import { TItem, TStatus } from './Item.types';
 
 import Modal from '../Modal';
-import UniversalModal from 'features/Careers/UniversalModal';
+import UniversalModal from 'components/UniversalModal';
 import { Button } from 'components';
 import axios, { AxiosResponse } from 'axios';
 
@@ -151,11 +151,7 @@ const Item = ({ data, onClickDelete, onTypeChange }: TItem) => {
                 <Button type="nav" size="small" onClick={handleCloseModal}>
                   Cancel
                 </Button>
-                <Button
-                  type="nav"
-                  size="small"
-                  color="white"
-                  onClick={() => console.log('Deleted, (nope)')}>
+                <Button type="nav" size="small" color="white" onClick={() => onClickDelete(data)}>
                   Delete
                 </Button>
               </div>

@@ -35,7 +35,7 @@ const linkRows = [
     href: '/orders',
   },
   {
-    id: 2,
+    id: 3,
     title: 'Settings',
     href: '/Settings',
   },

@@ -75,8 +75,8 @@ export default function useCheckAuth() {
       if (storedAuth) {
         axios
           .get('http://localhost:3001/admin/me')
-          .then(({ data }) => {
-            //   localStorage.setItem('user', JSON.stringify(data));
+          .then(({ data: backendUser }) => {
+            //   localStorage.setItem('user', JSON.stringify(backendUser));
 
             const storedUser = localStorage.getItem('user');
 
@@ -86,20 +86,23 @@ export default function useCheckAuth() {
             }
             const storedUserParsed = JSON.parse(storedUser);
 
-            if (
-              !storedUserParsed ||
-              storedUserParsed.length < 1 ||
-              JSON.stringify(data) !== storedUser
-            ) {
+            if (!storedUserParsed || storedUserParsed.length < 1) {
               return resetAuth();
+            }
+
+            // Compare the objects
+            const objectsAreEqual =
+              JSON.stringify(storedUserParsed) === JSON.stringify(backendUser);
+
+            // If they are different, update localStorage and push the new object
+            if (!objectsAreEqual) {
+              localStorage.setItem('user', JSON.stringify(backendUser));
             }
           })
           .catch((err) => {
             if (err.response && err.response.status === 403) {
               return resetAuth();
             }
-
-            resetAuth();
           });
       } else {
         resetAuth();

@@ -6,7 +6,7 @@ import styles from './Item.module.scss';
 import { TItem, TStatus } from './Item.types';
 
 import Modal from '../Modal';
-import UniversalModal from 'features/Careers/UniversalModal';
+import UniversalModal from 'components/UniversalModal';
 import { Button } from 'components';
 import axios, { AxiosResponse } from 'axios';
 

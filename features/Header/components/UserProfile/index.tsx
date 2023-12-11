@@ -6,6 +6,9 @@ import clsx from 'clsx';
 import useProfile from './useProfile';
 import useLogout from 'hooks/user/useLogout';
 import { useRouter } from 'next/router';
+import UniversalModal from 'components/UniversalModal';
+import { Button } from 'components';
+import axios from 'core/blog/axios';
 
 interface IUser {
   email: string;
@@ -52,6 +55,33 @@ const UserProfile = () => {
     }
   }, [router.pathname]);
 
+  const [isModalOpened, setIsModalOpened] = React.useState(false);
+
+  const handleModalAdditionalChange = () => setIsModalOpened(!isModalOpened);
+
+  const handleDepartmentChange = (department: string) => {
+    const patchData = {
+      department,
+    };
+
+    axios
+      .patch(`http://localhost:3001/admin/updateDepartment`, patchData)
+      .then(({ data: backendUser }) => {
+        // Update the user of to change the department
+        localStorage.setItem('user', JSON.stringify(backendUser));
+
+        setIsModalOpened(false);
+        if (router.pathname === '/') {
+          router.reload();
+        } else {
+          router.push('/');
+        }
+      })
+      .catch((error: any) => {
+        console.error('Error patching department:', error.response?.data || error.message);
+      });
+  };
+
   return (
     <div className={styles.wrap}>
       {userData && isLocalAuth && (
@@ -74,13 +104,13 @@ const UserProfile = () => {
             </svg>
             {showModal && (
               <div className={clsx(styles.overflow, { [styles.overlayVisible]: showModal })}>
-                <div className={styles.modal} ref={ref}>
+                <div className={styles['menu-modal']} ref={ref}>
                   {/* <div className={styles[`modal-button`]}>
                 <span className={styles[`modal-button--title`]}>Change department</span>
               </div> */}
-                  {/* <div className={styles[`modal-button`]}>
+                  <div className={styles[`modal-button`]} onClick={handleModalAdditionalChange}>
                     <span className={styles[`modal-button--title`]}>Change Department</span>
-                  </div> */}
+                  </div>
                   <div className={styles[`modal-button`]} onClick={handleLogout}>
                     <span className={styles[`modal-button--title`]}>Log out</span>
                   </div>
@@ -92,6 +122,42 @@ const UserProfile = () => {
             <h3 className={styles.name}>{userData.fullname}</h3>
             <p className={styles.position}>{userData.companyPosition}</p>
           </div>
+          {isModalOpened && (
+            <UniversalModal showClose onClose={handleModalAdditionalChange}>
+              {
+                <div className={styles[`modal-dialog`]}>
+                  <header className={styles['modal-header']}>
+                    <span className={styles[`modal-hero`]}>
+                      <h1 className={styles[`modal-title`]} tabIndex={-1}>
+                        Change Department
+                      </h1>
+                      <p className={styles[`modal-description`]}>Switch between departments</p>
+                    </span>
+                  </header>
+                  <div className={styles['modal-body--flex']}>
+                    <div className={styles[`modal-buttons`]}>
+                      <Button
+                        className={styles[`modal-order-button`]}
+                        type="nav"
+                        size="small"
+                        color="transparent"
+                        onClick={() => handleDepartmentChange('development')}>
+                        Development
+                      </Button>
+                      <Button
+                        className={styles[`modal-order-button`]}
+                        type="nav"
+                        size="small"
+                        color="transparent"
+                        onClick={() => handleDepartmentChange('careers')}>
+                        Careers
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              }
+            </UniversalModal>
+          )}
         </>
       )}
     </div>

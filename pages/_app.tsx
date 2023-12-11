@@ -6,7 +6,6 @@ import '../styles/globals.scss';
 
 import Head from 'next/head';
 
-import useGtag from 'hooks/useGtag';
 import useHideScrollOnTrue from 'hooks/useHideScrollOnTrue';
 import Header from 'features/Header';
 import Script from 'features/Script';
@@ -28,7 +27,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
   } = useChangeStateOnSpace();
 
   useHideScrollOnTrue(formOpen);
-  useGtag();
+  //   useGtag();
 
   useToken();
 

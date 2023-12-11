@@ -54,14 +54,9 @@ const Dashboard = () => {
           <path
             d="M31.2238 2H6.77664C4.07628 2 1.88721 4.18908 1.88721 6.88944V38.6708C1.88721 41.3711 4.07628 43.5602 6.77664 43.5602H31.2238C33.9242 43.5602 36.1133 41.3711 36.1133 38.6708V6.88944C36.1133 4.18908 33.9242 2 31.2238 2Z"
             stroke="white"
-            stroke-width="3"
+            strokeWidth="3"
           />
-          <path
-            d="M7 14H31M7 24H31M7 34H23"
-            stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
+          <path d="M7 14H31M7 24H31M7 34H23" stroke="white" strokeWidth="2" strokeLinecap="round" />
         </svg>
       ),
     },
@@ -113,8 +108,8 @@ const Dashboard = () => {
       />
       <div className={styles.banner}>
         <div className={styles[`banner--wrapper`]}>
-          {bannerItems.map((item) => (
-            <div className={styles['banner-item']}>
+          {bannerItems.map((item, key) => (
+            <div key={key} className={styles['banner-item']}>
               <div className={styles['banner-item-image']} style={{ background: item.background }}>
                 <div
                   className={styles['banner-item-image-background']}
@@ -224,8 +219,8 @@ const Dashboard = () => {
                 <path
                   d="M15 7L1 7M15 7L9 13M15 7L9 1"
                   stroke="black"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </Link>

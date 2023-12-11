@@ -2,6 +2,7 @@
 import React from 'react';
 import axios from 'core/blog/axios';
 import { DashboardData } from '../Dashboard.types';
+import { useRouter } from 'next/router';
 
 interface DataFetchingProps {
   API_ENDPOINT: string;
@@ -25,6 +26,7 @@ export default function useDataFetching({
   setBottomText,
 }: DataFetchingProps) {
   const [dataFetchError, setDataFetchError] = React.useState<string | null>(null);
+  const router = useRouter();
 
   const fetchData = async () => {
     if (page > totalPages) {
@@ -93,7 +95,6 @@ export default function useDataFetching({
         setIsFetching(null);
       } else {
         setDataFetchError('There has been an error while loading orders, please refresh the page');
-        console.error('Invalid data structure:', responseData);
       }
     } catch (error) {
       setIsFetching(false);
