@@ -31,10 +31,8 @@ const Dashboard = () => {
     isRefreshingItems,
     refreshItems,
     type,
-    onClickDelete,
     dataFetchError,
     isFetching,
-    onTypeChange,
     isFetchingQuieries,
   } = useDashboard();
 
@@ -233,12 +231,7 @@ const Dashboard = () => {
             ) : (
               <>
                 {data.items.map((obj, key) => (
-                  <Item
-                    key={obj._id}
-                    onClickDelete={() => onClickDelete(obj._id)}
-                    onTypeChange={(type: string) => onTypeChange(type, obj._id)}
-                    data={obj}
-                  />
+                  <Item key={obj._id} data={obj} />
                 ))}
                 {isFetching !== null && (
                   <div className={styles['bottom-container']}>

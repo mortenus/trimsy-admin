@@ -62,7 +62,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'core/blog/axios';
-import { OrderData } from '../Orders.types';
+import { DashboardData } from '../Dashboard.types';
 
 interface FilterHandlerHook {
   handleTypeChange: (value: string) => void;
@@ -90,7 +90,7 @@ export default function useFilterHandler({
   searchQuery: string;
   type: string;
   API_ENDPOINT: string;
-  setData: (data: OrderData[]) => void;
+  setData: (data: DashboardData) => void;
   setIsFetching: (bool: boolean | null) => void;
   cleanFetchData: () => void;
   setDataFetchError: (err: string) => void;

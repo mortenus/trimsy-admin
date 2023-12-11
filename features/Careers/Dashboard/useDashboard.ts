@@ -103,6 +103,7 @@ import { DashboardData } from './Dashboard.types';
 
 interface DashboardHook {
   data: DashboardData;
+  setData: React.Dispatch<React.SetStateAction<DashboardData>>;
   bottomText: string;
   containerRef: React.RefObject<HTMLDivElement>;
   handleScroll: () => void;
@@ -112,8 +113,8 @@ interface DashboardHook {
   clearSelection: () => void;
   isRefreshingItems: boolean;
   refreshItems: () => void;
-  onClickDelete: (id: number) => void;
-  onTypeChange: (type: string, id: number) => void;
+  //   onClickDelete: (id: number) => void;
+  //   onTypeChange: (type: string, id: number) => void;
   type: string;
   searchQuery: string;
   dataFetchError?: string | null;
@@ -200,5 +201,6 @@ export default function useOrders(): DashboardHook {
     searchQuery,
     dataFetchError,
     isFetchingQuieries,
+    setData,
   };
 }

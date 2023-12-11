@@ -21,11 +21,12 @@ export default function Landing() {
   React.useEffect(() => {
     // console.log('haha ', (localStorage.getItem('user')!.defaultDepartment.toString()));
     if (localStorage.getItem('user')) {
-      const user = JSON.parse(
-        localStorage.getItem('user') !== null ? localStorage.getItem('user') : '',
-      );
-      console.log(user.defaultDepartment);
-      setCurrentDepartment(user.defaultDepartment);
+      const storedUser = localStorage.getItem('user');
+
+      if (storedUser !== null) {
+        const user = JSON.parse(storedUser);
+        setCurrentDepartment(user.defaultDepartment);
+      }
     }
   }, [router.pathname]);
 
