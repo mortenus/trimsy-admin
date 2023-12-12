@@ -2,9 +2,12 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import axios from 'core/blog/axios';
+import checkApiEndpoint from 'utils/checkApiEndpoint';
 
 export default function useCheckAuth() {
   const router = useRouter();
+
+  const API_ENDPOINT = checkApiEndpoint();
 
   const [isAuth, setIsAuth] = React.useState<boolean | null>(null);
   const [isSessionStarted, setIsSessionStarted] = React.useState(false);
@@ -74,7 +77,7 @@ export default function useCheckAuth() {
 
       if (storedAuth) {
         axios
-          .get('http://localhost:3001/admin/me')
+          .get(`${API_ENDPOINT}/admin/me`)
           .then(({ data: backendUser }) => {
             //   localStorage.setItem('user', JSON.stringify(backendUser));
 

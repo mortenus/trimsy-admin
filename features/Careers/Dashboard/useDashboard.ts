@@ -100,6 +100,8 @@ import useScrollHandler from './hooks/useScrollHandler';
 import useFilterHandler from './hooks/useFilterHandler';
 import debounce from 'utils/debounce';
 import { DashboardData } from './Dashboard.types';
+import useApiEndpoint from 'hooks/useApiEndpoint';
+import checkApiEndpoint from 'utils/checkApiEndpoint';
 
 interface DashboardHook {
   data: DashboardData;
@@ -122,10 +124,10 @@ interface DashboardHook {
   isFetchingQuieries: boolean;
 }
 
-const API_ENDPOINT = 'http://localhost:3001/admin/careers';
-
 export default function useOrders(): DashboardHook {
   const router = useRouter();
+
+  const API_ENDPOINT = checkApiEndpoint();
 
   const [data, setData] = useState<DashboardData>({
     totalOrders: 0,

@@ -152,7 +152,9 @@ export default function useFilterHandler({
         setDataFetchError('');
         try {
           const excludedPathname = router.asPath.replace('/orders', '');
-          const response = await axios.get(`${API_ENDPOINT}/query${excludedPathname}`);
+          const response = await axios.get(
+            `${API_ENDPOINT}/admin/careers/query${excludedPathname}`,
+          );
 
           if (!response.data || response.data.length < 1) {
             setDataFetchError('No orders were found that match the criteria');

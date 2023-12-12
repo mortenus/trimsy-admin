@@ -4,6 +4,8 @@ import LoginForm from '../components/LoginForm';
 
 import validateForm from 'utils/validate';
 import axios from 'core/blog/axios';
+import useApiEndpoint from 'hooks/useApiEndpoint';
+import checkApiEndpoint from 'utils/checkApiEndpoint';
 // import { userActions } from 'redux/actions';
 
 // import store from 'redux/store';
@@ -24,8 +26,10 @@ const LoginFormContainer = withFormik({
     // const router = useRouter();
     const { router } = props;
 
+    const API_ENDPOINT = checkApiEndpoint();
+
     axios
-      .post('http://localhost:3001/auth/admin/signin', values)
+      .post(`${API_ENDPOINT}/auth/admin/signin`, values)
       .then(({ data }) => {
         const { token } = data;
         window.axios.defaults.headers.common['token'] = token;
@@ -34,7 +38,7 @@ const LoginFormContainer = withFormik({
         localStorage.setItem('token', token);
 
         axios
-          .get('http://localhost:3001/admin/me')
+          .get(`${API_ENDPOINT}/admin/me`)
           .then(({ data }) => {
             localStorage.setItem('user', JSON.stringify(data));
             localStorage.setItem('isAuth', true);

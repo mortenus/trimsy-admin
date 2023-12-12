@@ -100,6 +100,8 @@ import useScrollHandler from './hooks/useScrollHandler';
 import useFilterHandler from './hooks/useFilterHandler';
 import debounce from 'utils/debounce';
 import { OrderData } from './Orders.types';
+import useApiEndpoint from 'hooks/useApiEndpoint';
+import checkApiEndpoint from 'utils/checkApiEndpoint';
 
 interface OrdersHook {
   data: OrderData[];
@@ -121,10 +123,14 @@ interface OrdersHook {
   isFetchingQuieries: boolean;
 }
 
-const API_ENDPOINT = 'http://localhost:3001/admin/careers';
-
 export default function useOrders(): OrdersHook {
   const router = useRouter();
+
+  const API_ENDPOINT = useApiEndpoint();
+
+  useEffect(() => {
+    console.log(API_ENDPOINT);
+  }, [API_ENDPOINT, router.pathname]);
 
   const [data, setData] = useState<OrderData[]>([]);
   const [page, setPage] = useState<number>(1);
@@ -190,7 +196,7 @@ export default function useOrders(): OrdersHook {
           const idString = id.toString();
 
           // Send a request to delete the item with the given id
-          await axios.delete(`${API_ENDPOINT}/${idString}`);
+          await axios.delete(`${API_ENDPOINT}/admin/careers/${idString}`);
         }
 
         // Clear the delete queue after processing
@@ -233,7 +239,7 @@ export default function useOrders(): OrdersHook {
         status,
       };
 
-      await axios.patch(`${API_ENDPOINT}/status`, patchData).then(() => {
+      await axios.patch(`${API_ENDPOINT}/admin/careers/status`, patchData).then(() => {
         // Update the status of a specific item
         const updatedItems = data.map((item) =>
           item._id === id ? { ...item, status: status } : item,

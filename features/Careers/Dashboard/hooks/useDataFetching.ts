@@ -39,7 +39,7 @@ export default function useDataFetching({
     setBottomText('Loading...');
 
     try {
-      const response = await axios.get(API_ENDPOINT, {
+      const response = await axios.get(`${API_ENDPOINT}/admin/careers`, {
         params: { page },
       });
 
@@ -83,7 +83,7 @@ export default function useDataFetching({
     setBottomText('Loading...');
 
     try {
-      const resp = await axios.get(`${API_ENDPOINT}/dashboard`);
+      const resp = await axios.get(`${API_ENDPOINT}/admin/careers/dashboard`);
 
       const data = resp.data;
 
