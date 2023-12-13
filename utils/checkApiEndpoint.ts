@@ -6,16 +6,17 @@ export default function checkApiEndpoint(): string {
     ? process.env.NEXT_PUBLIC_API_ENDPOINT_DEV
     : process.env.NEXT_PUBLIC_API_ENDPOINT;
 
-  if (!endpoint) {
+  if (!process.env.NEXT_PUBLIC_API_ENDPOINT_DEV || process.env.NEXT_PUBLIC_API_ENDPOINT) {
     console.error('ERROR: invalid API_ENDPOINT & API_ENDPOINT_DEV in .env file');
+  }
+
+  if (!endpoint) {
     console.error(
       `Application might not send fetch requests correctly, using deafult endpoint for requests: ${defaultEndpoint}`,
     );
 
     return defaultEndpoint;
-  };
-
-console.error("Current endpoint: ", endpoint);
+  }
 
   return endpoint;
 }

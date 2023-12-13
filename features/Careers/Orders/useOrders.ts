@@ -100,7 +100,6 @@ import useScrollHandler from './hooks/useScrollHandler';
 import useFilterHandler from './hooks/useFilterHandler';
 import debounce from 'utils/debounce';
 import { OrderData } from './Orders.types';
-import useApiEndpoint from 'hooks/useApiEndpoint';
 import checkApiEndpoint from 'utils/checkApiEndpoint';
 
 interface OrdersHook {
@@ -126,7 +125,7 @@ interface OrdersHook {
 export default function useOrders(): OrdersHook {
   const router = useRouter();
 
-  const API_ENDPOINT = useApiEndpoint();
+  const API_ENDPOINT = checkApiEndpoint();
 
   useEffect(() => {
     console.log(API_ENDPOINT);

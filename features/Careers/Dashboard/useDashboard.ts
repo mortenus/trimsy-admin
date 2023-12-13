@@ -100,7 +100,6 @@ import useScrollHandler from './hooks/useScrollHandler';
 import useFilterHandler from './hooks/useFilterHandler';
 import debounce from 'utils/debounce';
 import { DashboardData } from './Dashboard.types';
-import useApiEndpoint from 'hooks/useApiEndpoint';
 import checkApiEndpoint from 'utils/checkApiEndpoint';
 
 interface DashboardHook {
