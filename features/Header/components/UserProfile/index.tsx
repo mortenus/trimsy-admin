@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import UniversalModal from 'components/UniversalModal';
 import { Button } from 'components';
 import axios from 'core/blog/axios';
+import checkApiEndpoint from 'utils/checkApiEndpoint';
 
 interface IUser {
   email: string;
@@ -64,8 +65,10 @@ const UserProfile = () => {
       department,
     };
 
+    const API_ENDPOINT = checkApiEndpoint();
+
     axios
-      .patch(`http://localhost:3001/admin/updateDepartment`, patchData)
+      .patch(`${API_ENDPOINT}/admin/updateDepartment`, patchData)
       .then(({ data: backendUser }) => {
         // Update the user of to change the department
         localStorage.setItem('user', JSON.stringify(backendUser));
