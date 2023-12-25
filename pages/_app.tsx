@@ -102,6 +102,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
       <Header
         handleFormChange={handleFormOverflowChange}
         handleKeyDownOverflowChange={handleKeyDownOverflowChange}
+        isAuth={isAuth}
       />
 
       {!isAuth && router.pathname !== '/auth/signin' ? (
