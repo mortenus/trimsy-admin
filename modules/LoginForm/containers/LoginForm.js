@@ -60,6 +60,7 @@ const LoginFormContainer = withFormik({
           (response.status === 403 || response.status === 422 || response.status === 404)
         ) {
           alert('There has been an error while loggin in your account');
+          setSubmitting(false);
         }
       });
     //     store

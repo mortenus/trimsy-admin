@@ -28,6 +28,8 @@ const FormField = ({
           onChange={handleChange}
           onBlur={handleBlur}
           type={type}
+          //   style={{ width: 'auto' }}
+          // width={''}
         />
       </Form.Item>
     </div>

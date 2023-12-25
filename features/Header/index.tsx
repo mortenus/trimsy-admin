@@ -38,9 +38,10 @@ const possibleDepartments = [
 type THeader = {
   handleFormChange: () => void;
   handleKeyDownOverflowChange: (e: any) => void;
+  isAuth: boolean | null;
 };
 
-const Header = ({ handleFormChange, handleKeyDownOverflowChange }: THeader) => {
+const Header = ({ handleFormChange, handleKeyDownOverflowChange, isAuth }: THeader) => {
   const router = useRouter();
 
   const handleCleanNav = () => router.pathname === '/stands-with-ukraine';
@@ -80,7 +81,7 @@ const Header = ({ handleFormChange, handleKeyDownOverflowChange }: THeader) => {
               )}
             </div>
             <UserProfile />
-            <Hamburger handleFormChange={handleFormChange} />
+            {isAuth && <Hamburger handleFormChange={handleFormChange} />}
           </nav>
         </div>
       </header>

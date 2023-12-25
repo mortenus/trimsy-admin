@@ -6,6 +6,8 @@ import { LockOutlined, MailOutlined } from '@ant-design/icons';
 // import validateField from 'utils/validateAuth';
 import Link from 'next/link';
 
+import styles from './LoginForm.module.scss';
+
 const onFinish = (values) => {
   console.log('Received values of form: ', values);
 };
@@ -16,11 +18,11 @@ const LoginForm = (props) => {
 
   return (
     <div>
-      <div className="auth__top">
-        <h2>Log in</h2>
-        <p>Please, write your email and password</p>
+      <div className={styles.intro}>
+        <h2 className={styles[`intro__title`]}>Log in</h2>
+        <p className={styles[`intro__description`]}>Please, write your email and password</p>
       </div>
-      <Block>
+      <section className={styles[`form`]}>
         <Form
           onSubmit={handleSubmit}
           name="normal_login"
@@ -58,7 +60,7 @@ const LoginForm = (props) => {
             </Button> */}
           </Form.Item>
         </Form>
-      </Block>
+      </section>
     </div>
   );
 };
