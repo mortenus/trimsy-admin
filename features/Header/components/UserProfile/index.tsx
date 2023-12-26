@@ -86,84 +86,86 @@ const UserProfile = () => {
   };
 
   return (
-    <div className={styles.wrap}>
+    <>
       {userData && isLocalAuth && (
-        <>
-          <div className={styles.menu} onClick={handleModalChange} ref={additionalRef}>
-            <div className={styles.image}>
-              <Image fill src={userData.imageUrl} alt={'Profile Image'} />
-            </div>
-            <svg
-              width="13"
-              height="8"
-              viewBox="0 0 13 8"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style={{ transform: showModal ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-              <path
-                d="M6.36403 4.94983L11.314 -0.00016797L12.728 1.41383L6.36403 7.77783L2.72592e-05 1.41383L1.41503 -0.000168836L6.36503 4.94983"
-                fill="black"
-              />
-            </svg>
-            {showModal && (
-              <div className={clsx(styles.overflow, { [styles.overlayVisible]: showModal })}>
-                <div className={styles['menu-modal']} ref={ref}>
-                  {/* <div className={styles[`modal-button`]}>
+        <div className={styles.wrap}>
+          <>
+            <div className={styles.menu} onClick={handleModalChange} ref={additionalRef}>
+              <div className={styles.image}>
+                <Image fill src={userData.imageUrl} alt={'Profile Image'} />
+              </div>
+              <svg
+                width="13"
+                height="8"
+                viewBox="0 0 13 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style={{ transform: showModal ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                <path
+                  d="M6.36403 4.94983L11.314 -0.00016797L12.728 1.41383L6.36403 7.77783L2.72592e-05 1.41383L1.41503 -0.000168836L6.36503 4.94983"
+                  fill="black"
+                />
+              </svg>
+              {showModal && (
+                <div className={clsx(styles.overflow, { [styles.overlayVisible]: showModal })}>
+                  <div className={styles['menu-modal']} ref={ref}>
+                    {/* <div className={styles[`modal-button`]}>
                 <span className={styles[`modal-button--title`]}>Change department</span>
               </div> */}
-                  <div className={styles[`modal-button`]} onClick={handleModalAdditionalChange}>
-                    <span className={styles[`modal-button--title`]}>Change Department</span>
-                  </div>
-                  <div className={styles[`modal-button`]} onClick={handleLogout}>
-                    <span className={styles[`modal-button--title`]}>Log out</span>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className={styles.info}>
-            <h3 className={styles.name}>{userData.fullname}</h3>
-            <p className={styles.position}>{userData.companyPosition}</p>
-          </div>
-          {isModalOpened && (
-            <UniversalModal showClose onClose={handleModalAdditionalChange}>
-              {
-                <div className={styles[`modal-dialog`]}>
-                  <header className={styles['modal-header']}>
-                    <span className={styles[`modal-hero`]}>
-                      <h1 className={styles[`modal-title`]} tabIndex={-1}>
-                        Change Department
-                      </h1>
-                      <p className={styles[`modal-description`]}>Switch between departments</p>
-                    </span>
-                  </header>
-                  <div className={styles['modal-body--flex']}>
-                    <div className={styles[`modal-buttons`]}>
-                      <Button
-                        className={styles[`modal-order-button`]}
-                        type="nav"
-                        size="small"
-                        color="transparent"
-                        onClick={() => handleDepartmentChange('development')}>
-                        Development
-                      </Button>
-                      <Button
-                        className={styles[`modal-order-button`]}
-                        type="nav"
-                        size="small"
-                        color="transparent"
-                        onClick={() => handleDepartmentChange('careers')}>
-                        Careers
-                      </Button>
+                    <div className={styles[`modal-button`]} onClick={handleModalAdditionalChange}>
+                      <span className={styles[`modal-button--title`]}>Change Department</span>
+                    </div>
+                    <div className={styles[`modal-button`]} onClick={handleLogout}>
+                      <span className={styles[`modal-button--title`]}>Log out</span>
                     </div>
                   </div>
                 </div>
-              }
-            </UniversalModal>
-          )}
-        </>
+              )}
+            </div>
+            <div className={styles.info}>
+              <h3 className={styles.name}>{userData.fullname}</h3>
+              <p className={styles.position}>{userData.companyPosition}</p>
+            </div>
+            {isModalOpened && (
+              <UniversalModal showClose onClose={handleModalAdditionalChange}>
+                {
+                  <div className={styles[`modal-dialog`]}>
+                    <header className={styles['modal-header']}>
+                      <span className={styles[`modal-hero`]}>
+                        <h1 className={styles[`modal-title`]} tabIndex={-1}>
+                          Change Department
+                        </h1>
+                        <p className={styles[`modal-description`]}>Switch between departments</p>
+                      </span>
+                    </header>
+                    <div className={styles['modal-body--flex']}>
+                      <div className={styles[`modal-buttons`]}>
+                        <Button
+                          className={styles[`modal-order-button`]}
+                          type="nav"
+                          size="small"
+                          color="transparent"
+                          onClick={() => handleDepartmentChange('development')}>
+                          Development
+                        </Button>
+                        <Button
+                          className={styles[`modal-order-button`]}
+                          type="nav"
+                          size="small"
+                          color="transparent"
+                          onClick={() => handleDepartmentChange('careers')}>
+                          Careers
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                }
+              </UniversalModal>
+            )}
+          </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

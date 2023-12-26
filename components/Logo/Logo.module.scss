@@ -4,20 +4,17 @@
 
   margin-right: 75px;
 
-  margin-left: 125px;
-
   height: 50px;
 
-  //   @media (max-width: 734px) {
-  //     height: 30px;
-  //   }
+  @media (max-width: 734px) {
+    height: 30px;
+    margin-right: 0;
+  }
 
-  //   @media (max-width: 450px) {
-  //     height: 40px;
-  //     width: 120px;
-
-  //     margin-right: 0;
-  //   }
+  @media (max-width: 450px) {
+    height: 40px;
+    width: 120px;
+  }
 
   svg {
     width: 100%;

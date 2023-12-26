@@ -65,7 +65,7 @@ const Header = ({ handleFormChange, handleKeyDownOverflowChange, isAuth }: THead
                 <></>
               ) : (
                 <>
-                  <ul>
+                  <ul className={styles.items}>
                     <HeaderLinks />
                   </ul>
                   {handleOverflowForm()

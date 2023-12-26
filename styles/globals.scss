@@ -18,7 +18,11 @@ body {
   height: 100%;
   position: relative;
   font-family: 'Satoshi', sans-serif;
-  min-width: 850px;
+  //   min-width: 850px;
+
+  @media only screen and (max-width: 1023px) and (max-device-width: 736px) {
+    min-width: 320px;
+  }
 
   #__next {
     height: 100%;

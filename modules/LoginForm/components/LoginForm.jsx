@@ -52,7 +52,11 @@ const LoginForm = (props) => {
           />
           <Form.Item>
             {isSubmitting && !isValid && <span>Error!</span>}
-            <Button disabled={isSubmitting} onClick={handleSubmit} type="primary" size="small">
+            <Button
+              disabled={isSubmitting && 'black'}
+              onClick={handleSubmit}
+              type="primary"
+              size="small">
               Log in
             </Button>
             {/* <Button onClick={handleGoogleSignIn} type="primary" size="small">

@@ -2,12 +2,16 @@
   display: flex;
   justify-content: space-between;
 
-  margin-bottom: 35px;
+  //   margin-bottom: 35px;
 
   width: 100%;
   background: #f8f9fb;
 
   padding: 25px 100px;
+
+  @media (max-width: 734px) {
+    padding: 25px 0 25px 25px;
+  }
 
   .text {
     .title {

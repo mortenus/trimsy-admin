@@ -115,7 +115,7 @@ const Item = ({ data, onClickDelete, onTypeChange }: TItem) => {
         <div className={styles.block}>
           <p className={styles.product}>{data.general.product}</p>
         </div>
-        <div className={styles.block}>
+        <div className={styles[`block--action`]}>
           <div className={statusClass}>{statusState}</div>
           <span className={styles.date}>{formattedDate}</span>
           <Modal onClick={(type: TModalType) => setModalType(type)} />

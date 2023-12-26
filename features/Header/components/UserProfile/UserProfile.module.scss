@@ -4,13 +4,13 @@
   align-items: center;
 
   height: 100%;
-  width: 400px;
+  //   width: 400px;
 
   margin-right: 50px;
 
-  @media (max-width: 1280px) {
-    width: 600px;
-  }
+  //   @media (max-width: 1280px) {
+  //     width: 600px;
+  //   }
 
   .menu {
     display: flex;
@@ -117,6 +117,8 @@
       font-weight: bold;
 
       color: rgb(29, 29, 31);
+
+      white-space: nowrap;
 
       @media (max-width: 1280px) {
         font-size: 12px;
