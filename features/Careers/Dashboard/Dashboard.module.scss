@@ -1,3 +1,5 @@
+$svgScale: 60px;
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -21,6 +23,18 @@
       background: #fff;
 
       padding: 50px 0;
+
+      @media (max-width: 1068px) {
+        // flex-direction: column;
+        // align-items: center;
+
+        padding: 25px 0;
+      }
+    }
+
+    @media (max-width: 734px) {
+      display: none;
+      visibility: hidden;
     }
 
     &-item {
@@ -29,23 +43,53 @@
       user-select: none;
       position: relative;
 
+      @media (max-width: 1068px) {
+        // margin-bottom: 50px;
+      }
+
       &-image {
         margin-right: 20px;
 
         position: relative;
 
-        width: 60px;
-        height: 60px;
+        width: $svgScale;
+        height: $svgScale;
         border-radius: 50px;
         background: #3498db;
+
+        @media (max-width: 1068px) {
+          width: $svgScale / 2;
+          height: $svgScale / 2;
+        }
+
+        @media (max-width: 734px) {
+          width: $svgScale / 3;
+          height: $svgScale / 3;
+        }
 
         & > svg {
           position: absolute;
           top: 15px;
           left: 16px;
-          width: 30px;
-          height: 30px;
+          width: $svgScale / 2;
+          height: $svgScale / 2;
           z-index: 2;
+
+          @media (max-width: 1068px) {
+            width: $svgScale / 3;
+            height: $svgScale / 3;
+
+            top: 5px;
+            left: 5px;
+          }
+
+          @media (max-width: 734px) {
+            width: $svgScale / 4;
+            height: $svgScale / 4;
+
+            top: 2px;
+            left: 2px;
+          }
         }
 
         &-background {
@@ -67,11 +111,19 @@
       &-title {
         color: #a4a4a4;
         font-weight: 200;
+
+        @media (max-width: 1068px) {
+          font-size: 12px;
+        }
       }
 
       &-count {
         font-weight: bold;
         font-size: 36px;
+
+        @media (max-width: 1068px) {
+          font-size: 24px;
+        }
       }
 
       &-description {
@@ -82,6 +134,12 @@
         position: absolute;
         bottom: -15px;
         width: 150%;
+
+        white-space: nowrap;
+
+        @media (max-width: 1068px) {
+          font-size: 10px;
+        }
       }
     }
   }

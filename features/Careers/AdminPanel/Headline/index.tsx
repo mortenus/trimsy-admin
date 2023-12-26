@@ -11,9 +11,9 @@ type THeadline = {
 const Headline = ({ title, description, chlidren }: THeadline) => {
   return (
     <div className={styles.info}>
-      <div className={styles.text}>
-        <h2 className={styles.title}>{title}</h2>
-        {description && <p className={styles.description}>{description}</p>}
+      <div className={styles[`info__text`]}>
+        <h2 className={styles[`info__text-title`]}>{title}</h2>
+        {description && <p className={styles[`info__text-description`]}>{description}</p>}
       </div>
 
       {chlidren && <div className={styles.chidlren}>{chlidren}</div>}
